@@ -2,10 +2,10 @@ app.controller('CookbookController', function() {
   this.newRecipe = {};
 
   this.addRecipe = function() {
-    console.log('hi');
     var self = this;
+    self.newRecipe.ingredients = self.newRecipe.ingredients.split('\n');
+    self.newRecipe.directions = self.newRecipe.directions.split('\n');
     this.recipes.push(self.newRecipe);
-    console.log(self.newRecipe);
     self.newRecipe = {};
   };
 
