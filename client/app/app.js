@@ -29,7 +29,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: 'app/templates/view-recipes-cookbook-partial.html'
   })
   .state('cookbook.addrecipe', {
-    url: '/addrecipe',
+    url: '',
     templateUrl: 'app/templates/add-recipes-cookbook-partial.html'
   });
 
