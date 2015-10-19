@@ -1,20 +1,36 @@
-var app = angular.module('cookBook', ['ui.router']);
+
+var app = angular.module('foodle', ['ui.router']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
+
+  $urlRouterProvider.otherwise('/home');
+
   $stateProvider
   .state('home', {
-    url: '/',
-    templeteUrl: 'index.html',
+    url: '/home',
+    templateUrl: 'app/templates/home.html',
     controller: 'HomeController'
   })
-  .state('auth', {
+    .state('auth', {
     url: '/auth',
-    templeteUrl: 'auth.html',
-    controller: 'AuthController'
+    templateUrl: 'app/templates/auth.html',
+    controller: 'AuthController',
+    controllerAs: 'auth'
+  })
+  .state('cookbook', {
+    url: '/cookbook',
+    abstract: true,
+    templateUrl: 'app/templates/cookbook.html',
+    controller: 'CookbookController',
+    controllerAs: 'cookbook'
+  })
+  .state('cookbook.viewrecipes', {
+    url: '',
+    templateUrl: 'app/templates/view-recipes-cookbook-partial.html'
+  })
+  .state('cookbook.addrecipe', {
+    url: '/addrecipe',
+    templateUrl: 'app/templates/add-recipes-cookbook-partial.html'
   });
 
-  // $urlRouterProvider.otherwise('/');
-
 });
-
-
