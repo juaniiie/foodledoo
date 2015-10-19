@@ -16,7 +16,11 @@ app.controller('CookbookController', function() {
   }, {
     name: 'Bean Soup with Beans',
     ingredients: ['beans', 'water', 'salt'],
-    directions: ['boil it']
+    directions: ['boil it', 'thing']
+  }, {
+    name: 'Lumpia',
+    ingredients: ['banana', 'oil', 'wrapping thingy'],
+    directions: ['wrap banana', 'fry thing']
   }];
 
 });

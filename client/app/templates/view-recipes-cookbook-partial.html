@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-10 col-md-offset-1" ng-repeat="recipe in cookbook.recipes">
+  <div class="col-md-10 col-md-offset-1" ng-repeat="recipe in cookbook.recipes | filter:search | orderBy: 'recipe.name'">
     <div class="thumbnail">
       <!-- <img src="http://sweetclipart.com/multisite/sweetclipart/files/sushi_rolls_futomaki_ebi.png" alt="...">  -->
       <div class="caption">
