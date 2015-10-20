@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var db = require('../db.js');
 
 var Schema = mongoose.Schema;
 
