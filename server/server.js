@@ -1,6 +1,9 @@
 var express = require('express');
+// var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var app = express();
+
+// mongoose.connect('mongodb://localhost/foodle');
 
 app.use(bodyParser.json());
 
