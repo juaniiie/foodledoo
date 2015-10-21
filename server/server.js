@@ -42,6 +42,7 @@ app.delete('/api/users/:id', function (req, res) {
 });
 
 //creates new recipe
+// try using different data field type 
 app.post('/api/users/:id/recipes/', function (req, res) {
   // res.status(200).json(recipeCtrl.addRecipe(req.body));
   recipeCtrl.addRecipe(req.body, function(err, recipe) {
@@ -54,9 +55,16 @@ app.post('/api/users/:id/recipes/', function (req, res) {
 });
 
 //get all recipes for one user
-//doest work
+//current spot
 app.get('/api/users/:id/recipes', function (req, res) {
-  res.status(200).json(recipeCtrl.getRecipesByUserId(req.params.id));
+  // res.status(200).json(recipeCtrl.getRecipesByUserId(req.params.id));
+  recipeCtrl.editRecipe(req.params.id, req.body, function(err, recipe) {
+    if (err) {
+      res.status(406).json(err);
+    } else {
+      res.status(200).json(recipe);
+    }
+  });
 });
 
 //edit recipe
