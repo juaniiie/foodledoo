@@ -49,3 +49,13 @@ exports.findUserById = function (id, callback) {
     });
 };
 
+exports.deleteUserById = function (id, callback) {
+  User.findOneAndRemove({_id: id}, {}, function(err, user, result) {
+    if (err) {
+      callback(err, null, null);
+    } else {
+      callback(null, user, result);
+    }
+  });
+};
+

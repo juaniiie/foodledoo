@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/../client'));
 app.post('/api/users', function (req, res) {
   userCtrl.createUser(req.body, function(err, user) {
     if (err) {
-      res.status(406).json("Not acceptable user fields");
+      res.status(406).json('Not acceptable user fields');
     } else {
       res.status(200).json(user);
     }
@@ -22,7 +22,18 @@ app.post('/api/users', function (req, res) {
 app.get('/api/users/:id', function (req, res) {
   userCtrl.findUserById(req.params.id, function(err, user) {
     if (err) {
-      res.status(406).json("cannot find user");
+      res.status(406).json('cannot find user');
+    } else {
+      res.status(200).json(user);
+    }
+  });
+});
+
+//delete users (may not need this for app)
+app.delete('/api/users/:id', function (req, res) {
+  userCtrl.deleteUserById(req.params.id, function(err, user) {
+    if (err) {
+      res.status(406).json('cannot find user');
     } else {
       res.status(200).json(user);
     }
