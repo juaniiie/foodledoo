@@ -29,37 +29,40 @@ exports.addRecipe = function (recipe, callback) {
 
 //get all recipes for one user
 exports.getRecipesByUserId = function (usernameId, callback) {
-  usernameId = Number(usernameId);
-  var userRecipes = [];
-  for (var i = 0; i < this.recipes.length; i++) {
-    if (this.recipes[i].usernameId === usernameId) {
-      userRecipes.push(this.recipes[i]);
-    }
-  }
-  return userRecipes;
+  // usernameId = Number(usernameId);
+  // var userRecipes = [];
+  // for (var i = 0; i < this.recipes.length; i++) {
+  //   if (this.recipes[i].usernameId === usernameId) {
+  //     userRecipes.push(this.recipes[i]);
+  //   }
+  // }
+  // return userRecipes;
+  Recipe.find({usernameId: usernameId}, callback);
 };
 
 //edit recipe
 exports.editRecipe = function (id, newRecipe, callback) {
-  id = Number(id);
-  for (var i = 0; i < this.recipes.length; i++) {
-    if (this.recipes[i].id === id) {
-      this.recipes[i].name = newRecipe.name;
-      this.recipes[i].ingredients = newRecipe.ingredients;
-      this.recipes[i].directions = newRecipe.directions;
-      return this.recipes[i];
-    }
-  }
+  // id = Number(id);
+  // for (var i = 0; i < this.recipes.length; i++) {
+  //   if (this.recipes[i].id === id) {
+  //     this.recipes[i].name = newRecipe.name;
+  //     this.recipes[i].ingredients = newRecipe.ingredients;
+  //     this.recipes[i].directions = newRecipe.directions;
+  //     return this.recipes[i];
+  //   }
+  // }
+  Recipe.findByIdAndUpdate(id, newRecipe, {}, callback);
 };
 
 //deletes recipe
 exports.deleteRecipe = function (id, callback) {
-  id = Number(id);
-  for (var i = 0; i < this.recipes.length; i++) {
-    if (this.recipes[i].id === id) {
-      var temp = this.recipes[i];
-      this.recipes.splice(i, 1);
-      return temp;
-    }
-  }
+  // id = Number(id);
+  // for (var i = 0; i < this.recipes.length; i++) {
+  //   if (this.recipes[i].id === id) {
+  //     var temp = this.recipes[i];
+  //     this.recipes.splice(i, 1);
+  //     return temp;
+  //   }
+  // }
+  Recipe.findOneAndRemove({_id: id}, {}, callback);
 };

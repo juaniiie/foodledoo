@@ -42,12 +42,11 @@ app.delete('/api/users/:id', function (req, res) {
 });
 
 //creates new recipe
-// try using different data field type 
 app.post('/api/users/:id/recipes/', function (req, res) {
   // res.status(200).json(recipeCtrl.addRecipe(req.body));
   recipeCtrl.addRecipe(req.body, function(err, recipe) {
     if (err) {
-      res.status(406).json(err);
+      res.status(406).json('recipe not in right format:', err);
     } else {
       res.status(200).json(recipe);
     }
@@ -55,26 +54,39 @@ app.post('/api/users/:id/recipes/', function (req, res) {
 });
 
 //get all recipes for one user
-//current spot
 app.get('/api/users/:id/recipes', function (req, res) {
   // res.status(200).json(recipeCtrl.getRecipesByUserId(req.params.id));
-  recipeCtrl.editRecipe(req.params.id, req.body, function(err, recipe) {
+  recipeCtrl.getRecipesByUserId(req.params.id, function(err, recipes) {
     if (err) {
-      res.status(406).json(err);
+      res.status(404).json('recipes not found:', err);
     } else {
-      res.status(200).json(recipe);
+      res.status(200).json(recipes);
     }
   });
 });
 
 //edit recipe
 app.put('/api/users/:id/recipes/:id', function (req, res) {
-  res.status(200).json(recipeCtrl.editRecipe(req.params.id, req.body));
+  // res.status(200).json(recipeCtrl.editRecipe(req.params.id, req.body));
+  recipeCtrl.editRecipe(req.params.id, req.body, function(err, recipe) {
+    if (err) {
+      res.status(404).json('recipe not found:', err);
+    } else {
+      res.status(200).json(recipe);
+    }
+  });
 });
 
 //deletes recipe
 app.delete('/api/users/:id/recipes/:id', function (req, res) {
-  res.status(200).json(recipeCtrl.deleteRecipe(req.params.id));
+  // res.status(200).json(recipeCtrl.deleteRecipe(req.params.id));
+  recipeCtrl.deleteRecipe(req.params.id, function(err, recipe) {
+    if (err) {
+      res.status(404).json('recipe not found:', err);
+    } else {
+      res.status(200).json(recipe);
+    }
+  });
 });
 
 app.listen('8080', function () {
