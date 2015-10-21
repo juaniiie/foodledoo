@@ -1,30 +1,30 @@
 var Recipe = require('../models/Recipe');
 
-exports.recipes = [{
-  usernameId: 2,
-  id: 9,
-  name: 'Tuna Casserole',
-  ingredients: ['tuna', 'stuff'],
-  directions: ['make it']
-}, {
-  usernameId: 2,
-  id: 8,
-  name: 'Bean Soup with Beans',
-  ingredients: ['beans', 'water', 'salt'],
-  directions: ['boil it', 'thing']
-}, {
-  usernameId: 3,
-  id: 7,
-  name: 'Lumpia',
-  ingredients: ['banana', 'oil', 'wrapping thingy'],
-  directions: ['wrap banana', 'fry thing']
-}];
+// exports.recipes = [{
+//   usernameId: 2,
+//   id: 9,
+//   name: 'Tuna Casserole',
+//   ingredients: ['tuna', 'stuff'],
+//   directions: ['make it']
+// }, {
+//   usernameId: 2,
+//   id: 8,
+//   name: 'Bean Soup with Beans',
+//   ingredients: ['beans', 'water', 'salt'],
+//   directions: ['boil it', 'thing']
+// }, {
+//   usernameId: 3,
+//   id: 7,
+//   name: 'Lumpia',
+//   ingredients: ['banana', 'oil', 'wrapping thingy'],
+//   directions: ['wrap banana', 'fry thing']
+// }];
 
 //creates new recipe
 exports.addRecipe = function (recipe, callback) {
-  this.recipes.push(recipe);
-  return this.recipes;
-  // Recipe.create(recipe, callback);
+  // this.recipes.push(recipe);
+  // return this.recipes;
+  Recipe.create(recipe, callback);
 };
 
 //get all recipes for one user

@@ -43,7 +43,14 @@ app.delete('/api/users/:id', function (req, res) {
 
 //creates new recipe
 app.post('/api/users/:id/recipes/', function (req, res) {
-  res.status(200).json(recipeCtrl.addRecipe(req.body));
+  // res.status(200).json(recipeCtrl.addRecipe(req.body));
+  recipeCtrl.addRecipe(req.body, function(err, recipe) {
+    if (err) {
+      res.status(406).json(err);
+    } else {
+      res.status(200).json(recipe);
+    }
+  });
 });
 
 //get all recipes for one user
