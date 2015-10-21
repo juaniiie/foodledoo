@@ -1,23 +1,23 @@
 var User = require('../models/User');
 
 //stub users
-exports.users = [
-  {
-    id: '1',
-    username: 'Juana',
-    password: 'p1'
-  },
-  {
-    id: '2',
-    username: 'Phong',
-    email: 'p2'
-  },
-  {
-    id: '3',
-    username: 'Seb',
-    email: 'p3'
-  }
-];
+// exports.users = [
+//   {
+//     id: '1',
+//     username: 'Juana',
+//     password: 'p1'
+//   },
+//   {
+//     id: '2',
+//     username: 'Phong',
+//     password: 'p2'
+//   },
+//   {
+//     id: '3',
+//     username: 'Seb',
+//     password: 'p3'
+//   }
+// ];
 
 
 //creates new user

@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var userCtrl = require('../db/controllers/userController');
+var recipeCtrl = require('../db/controllers/recipeController');
 var app = express();
 
 app.use(bodyParser.json());
@@ -22,7 +23,7 @@ app.post('/api/users', function (req, res) {
 app.get('/api/users/:id', function (req, res) {
   userCtrl.findUserById(req.params.id, function(err, user) {
     if (err) {
-      res.status(406).json('cannot find user');
+      res.status(404).json('cannot find user');
     } else {
       res.status(200).json(user);
     }
@@ -33,34 +34,33 @@ app.get('/api/users/:id', function (req, res) {
 app.delete('/api/users/:id', function (req, res) {
   userCtrl.deleteUserById(req.params.id, function(err, user) {
     if (err) {
-      res.status(406).json('cannot find user');
+      res.status(404).json('cannot find user');
     } else {
       res.status(200).json(user);
     }
   });
 });
 
-//get all recipes for one user
-app.get('/api/users/:id/recipes', function (req, res) {
-  //todo
-});
-
 //creates new recipe
 app.post('/api/users/:id/recipes/', function (req, res) {
-  //todo
+  res.status(200).json(recipeCtrl.addRecipe(req.body));
+});
+
+//get all recipes for one user
+//doest work
+app.get('/api/users/:id/recipes', function (req, res) {
+  res.status(200).json(recipeCtrl.getRecipesByUserId(req.params.id));
 });
 
 //edit recipe
 app.put('/api/users/:id/recipes/:id', function (req, res) {
-  //todo
+  res.status(200).json(recipeCtrl.editRecipe(req.params.id, req.body));
 });
 
 //deletes recipe
 app.delete('/api/users/:id/recipes/:id', function (req, res) {
-  //todo
+  res.status(200).json(recipeCtrl.deleteRecipe(req.params.id));
 });
-
-
 
 app.listen('8080', function () {
   console.log('listening on 8080');
