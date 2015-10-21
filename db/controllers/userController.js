@@ -39,23 +39,10 @@ exports.findUserById = function (id, callback) {
   //   }
   // };
   //not stub
-  User.findOne({_id: id})
-   .exec(function(err, user) {
-      if (err) {
-        callback(err, null);
-      } else {
-        callback(null, user);
-      }
-    });
+  User.findOne({_id: id}, callback);
 };
 
 exports.deleteUserById = function (id, callback) {
-  User.findOneAndRemove({_id: id}, {}, function(err, user, result) {
-    if (err) {
-      callback(err, null, null);
-    } else {
-      callback(null, user, result);
-    }
-  });
+  User.findOneAndRemove({_id: id}, {}, callback);
 };
 
