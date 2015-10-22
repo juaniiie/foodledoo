@@ -19,7 +19,6 @@ var User = require('../models/User');
 //   }
 // ];
 
-
 //creates new user
 exports.createUser = function (user, callback) {
   //stubs
