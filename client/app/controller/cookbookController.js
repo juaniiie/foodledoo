@@ -1,26 +1,28 @@
-app.controller('CookbookController', function() {
+app.controller('CookbookController', ['Cookbook', function(Cookbook) {
   this.newRecipe = {};
 
-  this.addRecipe = function() {
-    var self = this;
-    self.newRecipe.ingredients = self.newRecipe.ingredients.split('\n');
-    self.newRecipe.directions = self.newRecipe.directions.split('\n');
-    this.recipes.push(self.newRecipe);
-    self.newRecipe = {};
+  // this.recipes = null;
+
+  this.usernameId = '56286aac244d7371312ed77f';
+  // this.usernameId = '5628733b66a9327e3340dc74';
+  // this.usernameId = '5626d29813bbc0621c02cf5f';
+
+  //get all recipes for one user
+  this.init = function () {
+    console.log('init function called');
+    console.log('usernameId in init', this.usernameId);
+    this.recipes = Cookbook.getRecipes(this.usernameId);
+    console.log('recipes:', this.recipes);
   };
 
-  this.recipes = [{
-    name: 'Tuna Casserole',
-    ingredients: ['tuna', 'stuff'],
-    directions: ['make it']
-  }, {
-    name: 'Bean Soup with Beans',
-    ingredients: ['beans', 'water', 'salt'],
-    directions: ['boil it', 'thing']
-  }, {
-    name: 'Lumpia',
-    ingredients: ['banana', 'oil', 'wrapping thingy'],
-    directions: ['wrap banana', 'fry thing']
-  }];
+  this.init();
 
-});
+  this.addRecipe = function() {
+    this.newRecipe.usernameId = this.usernameId;
+    this.newRecipe.ingredients = this.newRecipe.ingredients.split('\n');
+    this.newRecipe.directions = this.newRecipe.directions.split('\n');
+    Cookbook.addRecipe(this.newRecipe, this.usernameId);
+    this.newRecipe = {};
+  };
+
+}]);
