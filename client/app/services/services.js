@@ -15,7 +15,6 @@ app.factory('Auth', function ($http) {
 
 app.factory('Cookbook', function ($http) {
   //add recipe to db
-  //I dont have to return recipes
   var addRecipe = function (recipe, usernameId) {
     return $http.post('/api/users/' + usernameId + '/recipes', recipe)
     .then(function () {
@@ -28,7 +27,7 @@ app.factory('Cookbook', function ($http) {
       // })
     })
     .catch(function(error) {
-      console.log('Error:' + error);
+      console.log('Error:', error);
     });
   };
   //get recipes for one user from db
