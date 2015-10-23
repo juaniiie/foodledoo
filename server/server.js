@@ -2,11 +2,23 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var userCtrl = require('../db/controllers/userController');
 var recipeCtrl = require('../db/controllers/recipeController');
+//==============auth=================
+var mongoose = require('mongoose');
+var passport = require('passport');
+
+require('../db/models/User');
+require('../config/passport');
+//==================================
+
 var app = express();
 
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/../client'));
+
+//========auth================
+app.use(passport.initialize());
+//============================
 
 //creates new user
 app.post('/api/users', function (req, res) {
