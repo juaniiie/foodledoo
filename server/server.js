@@ -56,12 +56,10 @@ app.post('/api/users/:id/recipes', function (req, res) {
 //get all recipes for one user
 app.get('/api/users/:id/recipes', function (req, res) {
   // res.status(200).json(recipeCtrl.getRecipesByUserId(req.params.id));
-  console.log('server usernameId', req.params.id);
   recipeCtrl.getRecipesByUserId(req.params.id, function(err, recipes) {
     if (err) {
       res.status(404).json('recipes not found:', err);
     } else {
-      console.log('recipes response in serve', recipes);
       res.status(200).json(recipes);
     }
   });

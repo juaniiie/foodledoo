@@ -1,28 +1,29 @@
 app.controller('CookbookController', ['Cookbook', function(Cookbook) {
+  
   this.newRecipe = {};
-
-  // this.recipes = null;
-
-  this.usernameId = '56286aac244d7371312ed77f';
+  // this.usernameId = '56286aac244d7371312ed77f';
   // this.usernameId = '5628733b66a9327e3340dc74';
-  // this.usernameId = '5626d29813bbc0621c02cf5f';
+  this.usernameId = '5626d29813bbc0621c02cf5f';
 
   //get all recipes for one user
   this.init = function () {
-    console.log('init function called');
-    console.log('usernameId in init', this.usernameId);
-    this.recipes = Cookbook.getRecipes(this.usernameId);
-    console.log('recipes:', this.recipes);
+    var self = this;
+    Cookbook.getRecipes(self.usernameId)
+    .then(function (recipes) {
+      console.log('recipes in controller', recipes.data);
+      self.recipes = recipes.data;
+    });
   };
-
   this.init();
 
+  //add recipe to database
   this.addRecipe = function() {
-    this.newRecipe.usernameId = this.usernameId;
-    this.newRecipe.ingredients = this.newRecipe.ingredients.split('\n');
-    this.newRecipe.directions = this.newRecipe.directions.split('\n');
-    Cookbook.addRecipe(this.newRecipe, this.usernameId);
-    this.newRecipe = {};
+    var self = this;
+    self.newRecipe.usernameId = self.usernameId;
+    self.newRecipe.ingredients = self.newRecipe.ingredients.split('\n');
+    self.newRecipe.directions = self.newRecipe.directions.split('\n');
+    Cookbook.addRecipe(self.newRecipe, self.usernameId);
+    self.newRecipe = {};
   };
 
 }]);
