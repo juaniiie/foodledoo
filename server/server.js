@@ -43,7 +43,6 @@ app.delete('/api/users/:id', function (req, res) {
 
 //creates new recipe
 app.post('/api/users/:id/recipes', function (req, res) {
-  // res.status(200).json(recipeCtrl.addRecipe(req.body));
   recipeCtrl.addRecipe(req.body, function(err, recipe) {
     if (err) {
       res.status(406).json('recipe not in right format:', err);
@@ -55,7 +54,6 @@ app.post('/api/users/:id/recipes', function (req, res) {
 
 //get all recipes for one user
 app.get('/api/users/:id/recipes', function (req, res) {
-  // res.status(200).json(recipeCtrl.getRecipesByUserId(req.params.id));
   recipeCtrl.getRecipesByUserId(req.params.id, function(err, recipes) {
     if (err) {
       res.status(404).json('recipes not found:', err);
@@ -67,7 +65,6 @@ app.get('/api/users/:id/recipes', function (req, res) {
 
 //edit recipe
 app.put('/api/users/:id/recipes/:id', function (req, res) {
-  // res.status(200).json(recipeCtrl.editRecipe(req.params.id, req.body));
   recipeCtrl.editRecipe(req.params.id, req.body, function(err, recipe) {
     if (err) {
       res.status(404).json('recipe not found:', err);
@@ -79,7 +76,6 @@ app.put('/api/users/:id/recipes/:id', function (req, res) {
 
 //deletes recipe
 app.delete('/api/users/:id/recipes/:id', function (req, res) {
-  // res.status(200).json(recipeCtrl.deleteRecipe(req.params.id));
   recipeCtrl.deleteRecipe(req.params.id, function(err, recipe) {
     if (err) {
       res.status(404).json('recipe not found:', err);
