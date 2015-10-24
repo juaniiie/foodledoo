@@ -8,6 +8,7 @@ app.controller('CookbookController', ['Cookbook', function(Cookbook) {
 
   //get all recipes for one user
   this.init = function () {
+    console.log('init function called');
     var self = this;
     Cookbook.getRecipes(self.usernameId)
     .then(function (recipes) {
@@ -18,6 +19,7 @@ app.controller('CookbookController', ['Cookbook', function(Cookbook) {
 
   //add recipe to database
   this.addRecipe = function() {
+    console.log('addrecipe function called');
     var self = this;
     self.newRecipe.usernameId = self.usernameId;
     self.newRecipe.ingredients = self.newRecipe.ingredients.split('\n');

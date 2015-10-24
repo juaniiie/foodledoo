@@ -47,27 +47,20 @@ app.factory('Auth', ['$http', '$window', function ($http, $window) {
   auth.logout = function () {
     $window.localStorage.removeItem('foodle-ficha');
   };
-  // var createUser = function (user) {
-  //   $http.post('/api/users', user)
-  //   .success(function(user) {
-  //     return user;
-  //   }])
-  //   .error(function(error) {
-  //     console.log('Error:', error);
-  //   });
-  // };
   return {
-    // createUser: createUser,
     auth: auth
   };
 }]);
 
-app.factory('Cookbook', function ($http) {
+app.factory('Cookbook', ['$http', 'Auth', function ($http, Auth) {
   //add recipe to db
   var addRecipe = function (recipe, usernameId) {
-    return $http.post('/api/users/' + usernameId + '/recipes', recipe)
+    usernameId = '';
+    return $http.post('/api/users/' + usernameId + '/recipes', recipe, {
+      headers: {Authorization: 'Bearer ' + Auth.auth.getToken()}})
     .then(function () {
-      return $http.get('/api/users/' + usernameId + '/recipes')
+      return $http.get('/api/users/' + usernameId + '/recipes', null, {
+        headers: {Authorization: 'Bearer ' + Auth.auth.getToken()}})
       .then(function (recipes) {
         return recipes;
       });
@@ -94,4 +87,4 @@ app.factory('Cookbook', function ($http) {
     addRecipe: addRecipe,
     getRecipes: getRecipes
   };
-});
+}]);
