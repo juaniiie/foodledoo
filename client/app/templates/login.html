@@ -1,0 +1,26 @@
+<div ng-show="error" class="alert alert-danger row">
+  <span>{{ error.message }}</span>
+</div>
+
+<div class="form" ng-submit="register()">
+  
+  <div class="row mb10 mt15">
+    <div class="input-group input-group-lg col-md-6 col-md-offset-3">
+      <span class="input-group-addon" id="sizing-addon1">Username</span>
+      <input type="text" class="form-control" ng-model="user.username">
+    </div>
+  </div>
+  <div class="row mb10">
+    <div class="input-group input-group-lg col-md-6 col-md-offset-3">
+      <span class="input-group-addon" id="sizing-addon1">Password</span>
+      <input type="text" class="form-control" ng-model="user.password">
+    </div>
+  </div>
+
+<div class="row">
+  <button class="btn btn-default btn-lg col-md-2 col-md-offset-4 mr10" type="submit">LogIn</button>
+</div>
+
+<div>
+  <span>Don't have an account? <a href="">Resgister here</a></span>
+</div>

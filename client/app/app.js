@@ -14,8 +14,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('auth', {
     url: '/auth',
     templateUrl: 'app/templates/auth.html',
-    controller: 'AuthController',
-    controllerAs: 'auth'
+    controller: 'AuthController'
+    // controllerAs: 'auth'
   })
   .state('cookbook', {
     url: '/cookbook',
