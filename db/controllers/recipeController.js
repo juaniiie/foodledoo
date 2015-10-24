@@ -1,7 +1,8 @@
 var Recipe = require('../models/Recipe');
 
 //creates new recipe
-exports.addRecipe = function (recipe, callback) {
+exports.addRecipe = function (recipe, usernameId, callback) {
+  recipe.usernameId = usernameId;
   Recipe.create(recipe, callback);
 };
 

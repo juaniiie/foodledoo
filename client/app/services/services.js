@@ -14,8 +14,8 @@ app.factory('Auth', ['$http', '$window', function ($http, $window) {
     var token = auth.getToken();
 
     if (token) {
-      var playload = JSON.parse($window.atob(token.split('.')[1]));
-      return playload.exp > Date.now() / 1000;
+      var payload = JSON.parse($window.atob(token.split('.')[1]));
+      return payload.exp > Date.now() / 1000;
     } else {
       return false;
     }
@@ -24,9 +24,18 @@ app.factory('Auth', ['$http', '$window', function ($http, $window) {
   auth.currentUser = function () {
     if (auth.isLoggedIn()) {
       var token = auth.getToken();
-      var playload = JSON.parse($window.atob(token.split('.')[1]));
+      var payload = JSON.parse($window.atob(token.split('.')[1]));
 
-      return playload.username;
+      return payload.username;
+    }
+  };
+
+  auth.currentUserId = function () {
+    if (auth.isLoggedIn()) {
+      var token = auth.getToken();
+      var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+      return payload._id;
     }
   };
 
@@ -54,27 +63,27 @@ app.factory('Auth', ['$http', '$window', function ($http, $window) {
 
 app.factory('Cookbook', ['$http', 'Auth', function ($http, Auth) {
   //add recipe to db
-  var addRecipe = function (recipe, usernameId) {
-    usernameId = '';
+  var addRecipe = function (recipe) {
+    var usernameId = Auth.auth.currentUserId();
     return $http.post('/api/users/' + usernameId + '/recipes', recipe, {
       headers: {Authorization: 'Bearer ' + Auth.auth.getToken()}})
     .then(function () {
-      return $http.get('/api/users/' + usernameId + '/recipes', null, {
+      return $http.get('/api/users/' + usernameId + '/recipes', {
         headers: {Authorization: 'Bearer ' + Auth.auth.getToken()}})
       .then(function (recipes) {
+        // console.log('factory get recipes:', recipes);
         return recipes;
       });
-      // .catch(function (error) {
-      //   console.log('Error:', error);
-      // })
     })
     .catch(function(error) {
       console.log('Error:', error);
     });
   };
   //get recipes for one user from db
-  var getRecipes = function (usernameId) {
-    return $http.get('/api/users/' + usernameId + '/recipes')
+  var getRecipes = function () {
+    var usernameId = Auth.auth.currentUserId();
+    return $http.get('/api/users/' + usernameId + '/recipes', {
+      headers: {Authorization: 'Bearer ' + Auth.auth.getToken()}})
     .then(function (recipes) {
       return recipes;
     })
