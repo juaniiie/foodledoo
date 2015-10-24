@@ -1,6 +1,6 @@
 var express = require('express');
 var jwt = require('express-jwt');
-var auth = jwt({secret: 'SOMETHINGBLUE', username:'payload'});
+var auth = jwt({secret: 'SOMETHINGBLUE', userProperty: 'payload'});
 var bodyParser = require('body-parser');
 var userCtrl = require('../db/controllers/userController');
 var recipeCtrl = require('../db/controllers/recipeController');
@@ -46,7 +46,7 @@ app.post('/login', function(req, res, next) {
     return res.status(400).json({message: 'Please fill out all fields'});
   }
 
-  passport.authenticate('local', function(err, user, info){
+  passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }
 
     if (user) {
@@ -71,29 +71,29 @@ app.post('/login', function(req, res, next) {
 // });
 
 // returns user by id
-app.get('/api/users/:id', function (req, res) {
-  userCtrl.findUserById(req.params.id, function(err, user) {
-    if (err) {
-      res.status(404).json('cannot find user');
-    } else {
-      res.status(200).json(user);
-    }
-  });
-});
+// app.get('/api/users/:id', function (req, res) {
+//   userCtrl.findUserById(req.params.id, function(err, user) {
+//     if (err) {
+//       res.status(404).json('cannot find user');
+//     } else {
+//       res.status(200).json(user);
+//     }
+//   });
+// });
 
 //delete users (may not need this for app)
-app.delete('/api/users/:id', function (req, res) {
-  userCtrl.deleteUserById(req.params.id, function(err, user) {
-    if (err) {
-      res.status(404).json('cannot find user');
-    } else {
-      res.status(200).json(user);
-    }
-  });
-});
+// app.delete('/api/users/:id', function (req, res) {
+//   userCtrl.deleteUserById(req.params.id, function(err, user) {
+//     if (err) {
+//       res.status(404).json('cannot find user');
+//     } else {
+//       res.status(200).json(user);
+//     }
+//   });
+// });
 
 //creates new recipe
-app.post('/api/users/:id/recipes', function (req, res) {
+app.post('/api/users/:id/recipes', auth, function (req, res) {
   recipeCtrl.addRecipe(req.body, function(err, recipe) {
     if (err) {
       res.status(406).json('recipe not in right format:', err);
@@ -104,7 +104,7 @@ app.post('/api/users/:id/recipes', function (req, res) {
 });
 
 //get all recipes for one user
-app.get('/api/users/:id/recipes', function (req, res) {
+app.get('/api/users/:id/recipes', auth, function (req, res) {
   recipeCtrl.getRecipesByUserId(req.params.id, function(err, recipes) {
     if (err) {
       res.status(404).json('recipes not found:', err);
@@ -115,7 +115,7 @@ app.get('/api/users/:id/recipes', function (req, res) {
 });
 
 //edit recipe
-app.put('/api/users/:id/recipes/:id', function (req, res) {
+app.put('/api/users/:id/recipes/:id', auth, function (req, res) {
   recipeCtrl.editRecipe(req.params.id, req.body, function(err, recipe) {
     if (err) {
       res.status(404).json('recipe not found:', err);
@@ -126,7 +126,7 @@ app.put('/api/users/:id/recipes/:id', function (req, res) {
 });
 
 //deletes recipe
-app.delete('/api/users/:id/recipes/:id', function (req, res) {
+app.delete('/api/users/:id/recipes/:id', auth, function (req, res) {
   recipeCtrl.deleteRecipe(req.params.id, function(err, recipe) {
     if (err) {
       res.status(404).json('recipe not found:', err);
