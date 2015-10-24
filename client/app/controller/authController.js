@@ -1,21 +1,22 @@
-app.controller('AuthController', ['$scope','$state','Auth',
-function($scope, $state, Auth) {
-  $scope.user = {};
+app.controller('AuthController', ['$state','Auth',
+function($state, Auth) {
+  this.user = {};
 
-  $scope.register = function() {
-    console.log('register function called');
-    Auth.auth.register($scope.user).error(function(error) {
-      $scope.error = error;
+  this.register = function() {
+    var self = this;
+    Auth.auth.register(self.user).error(function(error) {
+      self.error = error;
     }).then(function() {
       //go to cookbook?
       $state.go('cookbook.viewrecipes');
     });
   };
 
-  $scope.logIn = function() {
-    Auth.auth.logIn($scope.user).error(function(error) {
+  this.logIn = function() {
+    var self = this;
+    Auth.auth.logIn(self.user).error(function(error) {
       //for displaying errors later on
-      $scope.error = error;
+      self.error = error;
     }).then(function() {
       //go to cookbook?
       $state.go('cookbook.viewrecipes');
@@ -23,15 +24,3 @@ function($scope, $state, Auth) {
   };
 }]);
 
-//before auth refactor
-// app.controller('AuthController', ['Auth',
-// function(Auth) {
-//   this.user = {
-//     username: null,
-//     password: null
-//   };
-
-//   this.createUser = function () {
-//     Auth.createUser(this.user);
-//   };
-// }]);

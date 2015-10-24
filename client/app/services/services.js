@@ -71,7 +71,6 @@ app.factory('Cookbook', ['$http', 'Auth', function ($http, Auth) {
       return $http.get('/api/users/' + usernameId + '/recipes', {
         headers: {Authorization: 'Bearer ' + Auth.auth.getToken()}})
       .then(function (recipes) {
-        // console.log('factory get recipes:', recipes);
         return recipes;
       });
     })

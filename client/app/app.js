@@ -14,14 +14,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
   .state('login', {
     url: '/login',
     templateUrl: 'app/templates/login.html',
-    controller: 'AuthController'
-    // controllerAs: 'auth'
+    controller: 'AuthController',
+    controllerAs: 'auth'
   })
    .state('register', {
     url: '/register',
     templateUrl: 'app/templates/register.html',
-    controller: 'AuthController'
-    // controllerAs: 'auth'
+    controller: 'AuthController',
+    controllerAs: 'auth'
   })
   .state('cookbook', {
     url: '/cookbook',

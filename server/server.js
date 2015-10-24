@@ -59,27 +59,6 @@ app.post('/login', function(req, res, next) {
 
 //======================================================================================
 
-//creates new user
-// app.post('/api/users', function (req, res) {
-//   userCtrl.createUser(req.body, function(err, user) {
-//     if (err) {
-//       res.status(406).json('Not acceptable user fields');
-//     } else {
-//       res.status(200).json(user);
-//     }
-//   });
-// });
-
-// returns user by id
-// app.get('/api/users/:id', function (req, res) {
-//   userCtrl.findUserById(req.params.id, function(err, user) {
-//     if (err) {
-//       res.status(404).json('cannot find user');
-//     } else {
-//       res.status(200).json(user);
-//     }
-//   });
-// });
 
 //delete users (may not need this for app)
 // app.delete('/api/users/:id', function (req, res) {
@@ -92,6 +71,7 @@ app.post('/login', function(req, res, next) {
 //   });
 // });
 
+//works
 //creates new recipe
 app.post('/api/users/:id/recipes', auth, function (req, res) {
   recipeCtrl.addRecipe(req.body, req.payload._id, function(err, recipe) {
@@ -103,6 +83,7 @@ app.post('/api/users/:id/recipes', auth, function (req, res) {
   });
 });
 
+//works
 //get all recipes for one user
 app.get('/api/users/:id/recipes', auth, function (req, res) {
   recipeCtrl.getRecipesByUserId(req.params.id, function(err, recipes) {
@@ -114,6 +95,7 @@ app.get('/api/users/:id/recipes', auth, function (req, res) {
   });
 });
 
+//has not been tested
 //edit recipe
 app.put('/api/users/:id/recipes/:id', auth, function (req, res) {
   recipeCtrl.editRecipe(req.params.id, req.body, function(err, recipe) {
@@ -125,6 +107,7 @@ app.put('/api/users/:id/recipes/:id', auth, function (req, res) {
   });
 });
 
+//has not been tested
 //deletes recipe
 app.delete('/api/users/:id/recipes/:id', auth, function (req, res) {
   recipeCtrl.deleteRecipe(req.params.id, function(err, recipe) {
