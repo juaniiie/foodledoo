@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 
 var Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+var UserSchema = new Schema({
   username: {type: String, lowercase: true, unique: true},
   hash: String,
   salt: String
@@ -36,6 +36,6 @@ UserSchema.methods.generateJWT = function () {
   }, 'SOMETHINGBLUE');
 };
 
-var User = mongoose.model('User', userSchema);
+var User = mongoose.model('User', UserSchema);
 
 module.exports = User;
