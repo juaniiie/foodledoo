@@ -1,23 +1,24 @@
 app.controller('AuthController', ['$scope','$state','Auth',
-function($scope, $state, auth) {
+function($scope, $state, Auth) {
   $scope.user = {};
 
   $scope.register = function() {
-    auth.register($scope.user).error(function(error) {
+    console.log('register function called');
+    Auth.auth.register($scope.user).error(function(error) {
       $scope.error = error;
     }).then(function() {
       //go to cookbook?
-      $state.go('home');
+      $state.go('cookbook.viewrecipes');
     });
   };
 
   $scope.logIn = function() {
-    auth.logIn($scope.user).error(function(error) {
+    Auth.auth.logIn($scope.user).error(function(error) {
       //for displaying errors later on
       $scope.error = error;
     }).then(function() {
       //go to cookbook?
-      $state.go('home');
+      $state.go('cookbook.viewrecipes');
     });
   };
 }]);
