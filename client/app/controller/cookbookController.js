@@ -19,7 +19,6 @@ app.controller('CookbookController', ['Cookbook', function(Cookbook) {
     self.newRecipe.directions = self.newRecipe.directions.split('\n');
     Cookbook.addRecipe(self.newRecipe)
     .then(function (recipes) {
-      console.log(recipes);
       self.recipes = recipes.data;
     });
     self.newRecipe = {};

@@ -18,6 +18,7 @@
     <script src="app/controller/cookbookController.js"></script>
     <script src="app/controller/homeController.js"></script>
     <script src="app/controller/authController.js"></script>
+    <script src="app/controller/navbarController.js"></script>
     <script src="app/services/services.js"></script>
 
   </head>
@@ -25,12 +26,14 @@
   <body ng-app="foodle">
 
     <div>
-      <nav class="navbar navbar-default" ng-class="{mb0: true}" role="navigation">
+      <nav class="navbar navbar-default" ng-class="{mb0: true}" ng-controller="NavbarController as navCtrl" role="navigation">
         <div class="navbar-header">
           <a class="navbar-brand" ui-sref="home">foodleDoo</a>      
         </div>
         <ul class="nav navbar-nav navbar-right mr5">
-          <li><a ui-sref="login"> Login/Signup </a></li>
+          <li ng-show="navCtrl.isLoggedIn()"><a>{{ navCtrl.currentUser() }}'s Cookbook</a></li>
+          <li ng-show="navCtrl.isLoggedIn()"><a ui-sref="home" ng-click="navCtrl.logOut()">LogOut</a></li>
+          <li ng-hide="navCtrl.isLoggedIn()"><a ui-sref="login">LogIn/SignUp</a></li>
         </ul>
       </nav>
     </div>

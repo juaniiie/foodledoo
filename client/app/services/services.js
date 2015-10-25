@@ -53,7 +53,7 @@ app.factory('Auth', ['$http', '$window', function ($http, $window) {
     });
   };
 
-  auth.logout = function () {
+  auth.logOut = function () {
     $window.localStorage.removeItem('foodle-ficha');
   };
   return {

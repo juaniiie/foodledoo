@@ -7,7 +7,6 @@ function($state, Auth) {
     Auth.auth.register(self.user).error(function(error) {
       self.error = error;
     }).then(function() {
-      //go to cookbook?
       $state.go('cookbook.viewrecipes');
     });
   };
@@ -18,7 +17,6 @@ function($state, Auth) {
       //for displaying errors later on
       self.error = error;
     }).then(function() {
-      //go to cookbook?
       $state.go('cookbook.viewrecipes');
     });
   };

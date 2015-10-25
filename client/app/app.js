@@ -15,20 +15,35 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     url: '/login',
     templateUrl: 'app/templates/login.html',
     controller: 'AuthController',
-    controllerAs: 'auth'
+    controllerAs: 'auth',
+    onEnter: ['$state', 'Auth', function($state, Auth) {
+      if (Auth.auth.isLoggedIn()) {
+        $state.go('cookbook');
+      }
+    }]
   })
    .state('register', {
     url: '/register',
     templateUrl: 'app/templates/register.html',
     controller: 'AuthController',
-    controllerAs: 'auth'
+    controllerAs: 'auth',
+    onEnter: ['$state', 'Auth', function($state, Auth) {
+      if (Auth.auth.isLoggedIn()) {
+        $state.go('cookbook');
+      }
+    }]
   })
   .state('cookbook', {
     url: '/cookbook',
     abstract: true,
     templateUrl: 'app/templates/cookbook.html',
     controller: 'CookbookController',
-    controllerAs: 'cookbook'
+    controllerAs: 'cookbook',
+    onEnter: ['$state', 'Auth', function($state, Auth) {
+      if (!Auth.auth.isLoggedIn()) {
+        $state.go('login');
+      }
+    }]
   })
   .state('cookbook.viewrecipes', {
     url: '',
