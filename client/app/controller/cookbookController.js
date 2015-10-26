@@ -1,16 +1,18 @@
-app.controller('CookbookController', ['Cookbook', function(Cookbook) {
+app.controller('CookbookController', ['Cookbook', 'Auth', function(Cookbook, Auth) {
   this.newRecipe = {};
 
   //get all recipes for one user
-  this.init = function () {
+  this.init = function() {
     var self = this;
     Cookbook.getRecipes()
-    .then(function (recipes) {
+    .then(function(recipes) {
       self.recipes = recipes.data;
     });
   };
-  
-  this.init();
+
+  if (Auth.auth.isLoggedIn()) {
+    this.init();
+  }
 
   //add recipe to database
   this.addRecipe = function() {
@@ -18,7 +20,7 @@ app.controller('CookbookController', ['Cookbook', function(Cookbook) {
     self.newRecipe.ingredients = self.newRecipe.ingredients.split('\n');
     self.newRecipe.directions = self.newRecipe.directions.split('\n');
     Cookbook.addRecipe(self.newRecipe)
-    .then(function (recipes) {
+    .then(function(recipes) {
       self.recipes = recipes.data;
     });
     self.newRecipe = {};

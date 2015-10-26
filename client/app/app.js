@@ -39,9 +39,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: 'app/templates/cookbook.html',
     controller: 'CookbookController',
     controllerAs: 'cookbook',
-    onEnter: ['$state', 'Auth', function($state, Auth) {
+    onEnter: ['$state', 'Auth', '$timeout', function($state, Auth, $timeout) {
       if (!Auth.auth.isLoggedIn()) {
-        $state.go('login');
+        $timeout(function() {
+          $state.go('login');
+        });
       }
     }]
   })

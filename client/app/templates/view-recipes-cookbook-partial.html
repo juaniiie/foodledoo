@@ -1,14 +1,5 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1" ng-repeat="recipe in cookbook.recipes | filter:search | orderBy:'recipe'">
-    <div class="thumbnail">
-      <!-- <img src="http://sweetclipart.com/multisite/sweetclipart/files/sushi_rolls_futomaki_ebi.png" alt="...">  -->
-      <div class="caption">
-        <h3>{{recipe.name}}</h3>
-        <h4>Ingredients</h4>
-        <div ng-repeat="ingredient in recipe.ingredients track by $index">{{ingredient}}</div>
-        <h4>Directions</h4>
-        <div ng-repeat="direction in recipe.directions track by $index">{{direction}}</div>
-      </div>
-    </div>
+    <recipe recipe-info="recipe"></recipe>
   </div>
 </div>
