@@ -35,7 +35,7 @@ app.post('/register', function(req, res, next) {
 
   user.setPassword(req.body.password);
 
-  user.save(function (err) {
+  user.save(function(err) {
     if (err) { return next(err); }
 
     return res.json({token: user.generateJWT()});
@@ -59,8 +59,6 @@ app.post('/login', function(req, res, next) {
 });
 
 //======================================================================================
-
-
 //delete users (may not need this for app)
 // app.delete('/api/users/:id', function (req, res) {
 //   userCtrl.deleteUserById(req.params.id, function(err, user) {
@@ -74,7 +72,7 @@ app.post('/login', function(req, res, next) {
 
 //works
 //creates new recipe
-app.post('/api/users/:id/recipes', auth, function (req, res) {
+app.post('/api/users/:id/recipes', auth, function(req, res) {
   recipeCtrl.addRecipe(req.body, req.payload._id, function(err, recipe) {
     if (err) {
       res.status(406).json('recipe not in right format:', err);
@@ -86,7 +84,7 @@ app.post('/api/users/:id/recipes', auth, function (req, res) {
 
 //works
 //get all recipes for one user
-app.get('/api/users/:id/recipes', auth, function (req, res) {
+app.get('/api/users/:id/recipes', auth, function(req, res) {
   recipeCtrl.getRecipesByUserId(req.params.id, function(err, recipes) {
     if (err) {
       res.status(404).json('recipes not found:', err);
@@ -96,9 +94,9 @@ app.get('/api/users/:id/recipes', auth, function (req, res) {
   });
 });
 
-//has not been tested
+//has not been tested with auth
 //edit recipe
-app.put('/api/users/:id/recipes/:id', auth, function (req, res) {
+app.put('/api/users/:id/recipes/:id', auth, function(req, res) {
   recipeCtrl.editRecipe(req.params.id, req.body, function(err, recipe) {
     if (err) {
       res.status(404).json('recipe not found:', err);
@@ -108,9 +106,9 @@ app.put('/api/users/:id/recipes/:id', auth, function (req, res) {
   });
 });
 
-//has not been tested
+//has not been tested with auth
 //deletes recipe
-app.delete('/api/users/:id/recipes/:id', auth, function (req, res) {
+app.delete('/api/users/:id/recipes/:id', auth, function(req, res) {
   recipeCtrl.deleteRecipe(req.params.id, function(err, recipe) {
     if (err) {
       res.status(404).json('recipe not found:', err);
@@ -120,6 +118,6 @@ app.delete('/api/users/:id/recipes/:id', auth, function (req, res) {
   });
 });
 
-app.listen('8080', function () {
+app.listen('8080', function() {
   console.log('listening on 8080');
 });

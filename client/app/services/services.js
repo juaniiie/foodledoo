@@ -1,16 +1,16 @@
-app.factory('Auth', ['$http', '$window', function ($http, $window) {
+app.factory('Auth', ['$http', '$window', function($http, $window) {
   var auth = {};
 
-  auth.saveToken = function (token) {
+  auth.saveToken = function(token) {
     $window.localStorage['foodle-ficha'] = token;
   };
 
-  auth.getToken = function () {
+  auth.getToken = function() {
     return $window.localStorage['foodle-ficha'];
   };
 
   //atob() function decodes a string of data which has been encoded using base-64 encoding
-  auth.isLoggedIn = function () {
+  auth.isLoggedIn = function() {
     var token = auth.getToken();
 
     if (token) {
@@ -21,7 +21,7 @@ app.factory('Auth', ['$http', '$window', function ($http, $window) {
     }
   };
 
-  auth.currentUser = function () {
+  auth.currentUser = function() {
     if (auth.isLoggedIn()) {
       var token = auth.getToken();
       var payload = JSON.parse($window.atob(token.split('.')[1]));
@@ -30,7 +30,7 @@ app.factory('Auth', ['$http', '$window', function ($http, $window) {
     }
   };
 
-  auth.currentUserId = function () {
+  auth.currentUserId = function() {
     if (auth.isLoggedIn()) {
       var token = auth.getToken();
       var payload = JSON.parse($window.atob(token.split('.')[1]));
@@ -39,21 +39,21 @@ app.factory('Auth', ['$http', '$window', function ($http, $window) {
     }
   };
 
-  auth.register = function (user) {
+  auth.register = function(user) {
     return $http.post('/register', user)
-    .success(function (data) {
+    .success(function(data) {
       auth.saveToken(data.token);
     });
   };
 
-  auth.logIn = function (user) {
+  auth.logIn = function(user) {
     return $http.post('/login', user)
-    .success(function (data) {
+    .success(function(data) {
       auth.saveToken(data.token);
     });
   };
 
-  auth.logOut = function () {
+  auth.logOut = function() {
     $window.localStorage.removeItem('foodle-ficha');
   };
   return {
@@ -61,16 +61,16 @@ app.factory('Auth', ['$http', '$window', function ($http, $window) {
   };
 }]);
 
-app.factory('Cookbook', ['$http', 'Auth', function ($http, Auth) {
+app.factory('Cookbook', ['$http', 'Auth', function($http, Auth) {
   //add recipe to db
-  var addRecipe = function (recipe) {
+  var addRecipe = function(recipe) {
     var usernameId = Auth.auth.currentUserId();
     return $http.post('/api/users/' + usernameId + '/recipes', recipe, {
       headers: {Authorization: 'Bearer ' + Auth.auth.getToken()}})
-    .then(function () {
+    .then(function() {
       return $http.get('/api/users/' + usernameId + '/recipes', {
         headers: {Authorization: 'Bearer ' + Auth.auth.getToken()}})
-      .then(function (recipes) {
+      .then(function(recipes) {
         return recipes;
       });
     })
@@ -79,14 +79,14 @@ app.factory('Cookbook', ['$http', 'Auth', function ($http, Auth) {
     });
   };
   //get recipes for one user from db
-  var getRecipes = function () {
+  var getRecipes = function() {
     var usernameId = Auth.auth.currentUserId();
     return $http.get('/api/users/' + usernameId + '/recipes', {
       headers: {Authorization: 'Bearer ' + Auth.auth.getToken()}})
-    .then(function (recipes) {
+    .then(function(recipes) {
       return recipes;
     })
-    .catch(function (error) {
+    .catch(function(error) {
       console.log('Error:', error);
     });
   };

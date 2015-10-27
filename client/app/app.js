@@ -1,7 +1,7 @@
 
 var app = angular.module('foodle', ['ui.router']);
 
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/home');
 
