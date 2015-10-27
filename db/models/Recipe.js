@@ -9,7 +9,8 @@ var recipeSchema = new Schema({
   usernameId: String,
   name: String,
   ingredients: [String],
-  directions: [String]
+  directions: [String],
+  stats: String
 });
 
 var Recipe = mongoose.model('Recipe', recipeSchema);

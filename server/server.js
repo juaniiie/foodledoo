@@ -60,7 +60,7 @@ app.post('/login', function(req, res, next) {
 
 //======================================================================================
 //delete users (may not need this for app)
-// app.delete('/api/users/:id', function (req, res) {
+// app.delete('/api/users/:id', function(req, res) {
 //   userCtrl.deleteUserById(req.params.id, function(err, user) {
 //     if (err) {
 //       res.status(404).json('cannot find user');

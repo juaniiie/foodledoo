@@ -10,3 +10,5 @@ client/libs
 config/config.js
 
 client/app/contants.js
+
+sample-api-response.js
