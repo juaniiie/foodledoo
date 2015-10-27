@@ -1,6 +1,7 @@
 var express = require('express');
 var jwt = require('express-jwt');
-var auth = jwt({secret: 'SOMETHINGBLUE', userProperty: 'payload'});
+var set = require('../config/config');
+var auth = jwt({secret: set.SECRET, userProperty: 'payload'});
 var bodyParser = require('body-parser');
 var userCtrl = require('../db/controllers/userController');
 var recipeCtrl = require('../db/controllers/recipeController');

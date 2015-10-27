@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var db = require('../db.js');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
+var set = require('../../config/config.js');
 
 var Schema = mongoose.Schema;
 
@@ -9,7 +10,6 @@ var UserSchema = new Schema({
   username: {type: String, lowercase: true, unique: true},
   hash: String,
   salt: String
-  // password: String
 });
 
 UserSchema.methods.setPassword = function (password) {
@@ -33,7 +33,7 @@ UserSchema.methods.generateJWT = function () {
     _id: this._id,
     username: this.username,
     exp: parseInt(exp.getTime() / 1000),
-  }, 'SOMETHINGBLUE');
+  }, set.SECRET);
 };
 
 var User = mongoose.model('User', UserSchema);
