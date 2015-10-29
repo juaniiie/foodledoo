@@ -119,7 +119,7 @@ app.delete('/api/users/:id/recipes/:id', auth, function(req, res) {
   });
 });
 //============================edamam api call ======================================
-app.post('/api/nutrients', function(req, res) {
+app.post('/api/nutrients', auth, function(req, res) {
   var recipeData = req.body;
   request({
     url: 'https://api.edamam.com/api/nutrition-details?app_id=' + set.API_APP_ID + '&app_key=' + set.API_KEY,

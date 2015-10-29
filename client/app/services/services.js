@@ -96,12 +96,13 @@ app.factory('Cookbook', ['$http', 'Auth', 'API', function($http, Auth, API) {
   };
 }]);
 
-app.factory('Request', function() {
+app.factory('Request', ['$http', 'Auth', function($http, Auth) {
   var edamamReq = function(ingr) {
-    return $http.post('/api/nutrients', self.reqObj)
+    return $http.post('/api/nutrients', ingr, {
+      headers: {Authorization: 'Bearer ' + Auth.auth.getToken()}})
     .then(function(data) {
-      console.log('controller response', data);
-      self.eNutri = data.data;
+      console.log('factory response', data);
+      return data;
     })
     .catch(function(error) {
       console.log('Error:', error);
@@ -110,5 +111,5 @@ app.factory('Request', function() {
   return {
     edamamReq: edamamReq
   };
-});
+}]);
 

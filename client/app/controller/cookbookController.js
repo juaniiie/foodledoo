@@ -37,5 +37,4 @@ app.controller('CookbookController', ['Cookbook','Request', 'Auth', function(Coo
         self.eNutri = nutriData.data;
       });
   };
-
 }]);
