@@ -1,7 +1,7 @@
-app.controller('CookbookController', ['Cookbook', 'Auth', 'API', function(Cookbook, Auth, API) {
+app.controller('CookbookController', ['Cookbook','Request', 'Auth', function(Cookbook, Request, Auth) {
   this.newRecipe = {};
-  this.reqObj = {};
-  this.eNutri = null;
+  this.reqIngr = {};
+  this.eNutri = {};
 
   //get all recipes for one user
   this.init = function() {
@@ -29,13 +29,12 @@ app.controller('CookbookController', ['Cookbook', 'Auth', 'API', function(Cookbo
   };
 
   this.getNutrition = function() {
-    console.log('getNutrition called');
     var self = this;
-    self.reqObj.title = self.newRecipe.name;
-    self.reqObj.ingr = self.newRecipe.ingredients.split('\n');
-    Cookbook.getNutrition(self.reqObj)
+    self.reqIngr.ingr = self.newRecipe.ingredients.split('\n');
+    self.reqIngr.title = self.newRecipe.name;
+    Request.edamamReq(self.reqIngr)
       .then(function(nutriData) {
-        self.eNutri = nutriData;
+        self.eNutri = nutriData.data;
       });
   };
 

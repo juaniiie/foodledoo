@@ -90,24 +90,25 @@ app.factory('Cookbook', ['$http', 'Auth', 'API', function($http, Auth, API) {
       console.log('Error:', error);
     });
   };
-  //get Nutrition from API
-  var getNutrition = function(ingr) {
-    console.log('request object', ingr);
-    return $http.post('https://api.edamam.com/api/nutrition-details?app_id=$' + API.APP_ID + '&app_key=$' + API.KEY, ingr, {
-      "headers": {"Content-Type": "multipart/form-data"}
-    })
-    .then(function(nutriData) {
-      console.log('serviceResponse:', nutriData);
-      return nutriData;
+  return {
+    addRecipe: addRecipe,
+    getRecipes: getRecipes
+  };
+}]);
+
+app.factory('Request', function() {
+  var edamamReq = function(ingr) {
+    return $http.post('/api/nutrients', self.reqObj)
+    .then(function(data) {
+      console.log('controller response', data);
+      self.eNutri = data.data;
     })
     .catch(function(error) {
       console.log('Error:', error);
     });
   };
-
   return {
-    addRecipe: addRecipe,
-    getRecipes: getRecipes,
-    getNutrition: getNutrition
+    edamamReq: edamamReq
   };
-}]);
+});
+

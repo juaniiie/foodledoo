@@ -9,6 +9,7 @@ var recipeCtrl = require('../db/controllers/recipeController');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var User = mongoose.model('User');
+var request = require('request');
 
 require('../db/models/User');
 require('../config/passport');
@@ -117,6 +118,26 @@ app.delete('/api/users/:id/recipes/:id', auth, function(req, res) {
     }
   });
 });
+//============================edamam api call ======================================
+app.post('/api/nutrients', function(req, res) {
+  var recipeData = req.body;
+  request({
+    url: 'https://api.edamam.com/api/nutrition-details?app_id=' + set.API_APP_ID + '&app_key=' + set.API_KEY,
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    json: true,
+    body: recipeData,
+  }, function(error, response, body) {
+    if (error) {
+      res.status(404).json('Cannot find ingredient nutrients:', error);
+    } else {
+      res.status(200).json(body);
+    }
+  });
+});
+//===================================================================================
 
 app.listen('8080', function() {
   console.log('listening on 8080');
