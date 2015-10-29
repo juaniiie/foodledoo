@@ -1,0 +1,57 @@
+<div></div>
+<table class="table col-md-4 mt15">
+  <tr>
+    <th>Nutrition</th>
+  </tr>
+  <tr>
+    <th>Nutrient</th>
+    <th>Quantity</th>
+    <th>% Daily Value</th>
+  </tr>
+  <tr>
+    <td>Calories</td>
+    <td>{{calories.quantity +' '+ calories.unit}}</td>
+    <td>{{calories.dailyPercent +' %'}}</td>
+  </tr>
+  <tr>
+    <td>{{fat.label}}</td>
+    <td>{{fat.quantity +' '+ fat.unit}}</td>
+    <td>{{fat.dailyPercent + ' %'}}</td>
+  </tr>
+  <tr>
+    <td>{{carbs.label}}</td>
+    <td>{{carbs.quantity +' '+ carbs.unit}}</td>
+    <td>{{carbs.dailyPercent + ' %'}}</td>
+  </tr>
+  <tr>
+    <td>{{fiber.label}}</td>
+    <td>{{fiber.quantity +' '+ fiber.unit}}</td>
+    <td>{{fiber.dailyPercent + ' %'}}</td>
+  </tr>
+  <tr>
+    <td>{{protein.label}}</td>
+    <td>{{protein.quantity +' '+ protein.unit}}</td>
+    <td>{{protein.dailyPercent + ' %'}}</td>
+  </tr>
+  <tr>
+    <td>{{cholesterol.label}}</td>
+    <td>{{cholesterol.quantity +' '+ cholesterol.unit}}</td>
+    <td>{{cholesterol.dailyPercent + ' %'}}</td>
+  </tr>
+  <tr>
+    <td>{{sodium.label}}</td>
+    <td>{{sodium.quantity +' '+ sodium.unit}}</td>
+    <td>{{sodium.dailyPercent + ' %'}}</td>
+  </tr>
+  <tr>
+    <td>{{sugar.label}}</td>
+    <td>{{sugar.quantity +' '+ sugar.unit}}</td>
+    <td>N/A</td>
+  </tr>
+
+</table>
+
+<div class="container col-md-4" ng-repeat="label in nutrition.healthLabels">
+  <!-- <img src="http://sweetclipart.com/multisite/sweetclipart/files/sushi_rolls_futomaki_ebi.png" alt="...">  -->
+    <h2 class="label label-info">{{label}}</h2>
+</div>

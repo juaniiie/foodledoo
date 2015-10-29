@@ -10,7 +10,7 @@ var recipeSchema = new Schema({
   name: String,
   ingredients: [String],
   directions: [String],
-  stats: String
+  nutrition: String
 });
 
 var Recipe = mongoose.model('Recipe', recipeSchema);

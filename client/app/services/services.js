@@ -61,7 +61,7 @@ app.factory('Auth', ['$http', '$window', function($http, $window) {
   };
 }]);
 
-app.factory('Cookbook', ['$http', 'Auth', function($http, Auth) {
+app.factory('Cookbook', ['$http', 'Auth', 'API', function($http, Auth, API) {
   //add recipe to db
   var addRecipe = function(recipe) {
     var usernameId = Auth.auth.currentUserId();
@@ -90,9 +90,24 @@ app.factory('Cookbook', ['$http', 'Auth', function($http, Auth) {
       console.log('Error:', error);
     });
   };
+  //get Nutrition from API
+  var getNutrition = function(ingr) {
+    console.log('request object', ingr);
+    return $http.post('https://api.edamam.com/api/nutrition-details?app_id=$' + API.APP_ID + '&app_key=$' + API.KEY, ingr, {
+      "headers": {"Content-Type": "multipart/form-data"}
+    })
+    .then(function(nutriData) {
+      console.log('serviceResponse:', nutriData);
+      return nutriData;
+    })
+    .catch(function(error) {
+      console.log('Error:', error);
+    });
+  };
 
   return {
     addRecipe: addRecipe,
-    getRecipes: getRecipes
+    getRecipes: getRecipes,
+    getNutrition: getNutrition
   };
 }]);

@@ -1,5 +1,7 @@
-app.controller('CookbookController', ['Cookbook', 'Auth', function(Cookbook, Auth) {
+app.controller('CookbookController', ['Cookbook', 'Auth', 'API', function(Cookbook, Auth, API) {
   this.newRecipe = {};
+  this.reqObj = {};
+  this.eNutri = null;
 
   //get all recipes for one user
   this.init = function() {
@@ -24,6 +26,17 @@ app.controller('CookbookController', ['Cookbook', 'Auth', function(Cookbook, Aut
       self.recipes = recipes.data;
     });
     self.newRecipe = {};
+  };
+
+  this.getNutrition = function() {
+    console.log('getNutrition called');
+    var self = this;
+    self.reqObj.title = self.newRecipe.name;
+    self.reqObj.ingr = self.newRecipe.ingredients.split('\n');
+    Cookbook.getNutrition(self.reqObj)
+      .then(function(nutriData) {
+        self.eNutri = nutriData;
+      });
   };
 
 }]);
