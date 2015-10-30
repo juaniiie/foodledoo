@@ -5,7 +5,6 @@ app.directive('nutrition', function() {
       nutrition: '='
     },
     link: function(scope) {
-        console.log('nutrition info sent to directive: ', scope.nutrition);
       scope.$watchCollection('nutrition', function() {
         scope.cholesterol = scope.nutrition.totalNutrients.CHOLE;
         scope.cholesterol.quantity = Number(scope.cholesterol.quantity).toFixed(1);

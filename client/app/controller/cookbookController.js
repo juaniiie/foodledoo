@@ -10,10 +10,9 @@ app.controller('CookbookController', ['Cookbook','Request', 'Auth', function(Coo
     var self = this;
     Cookbook.getRecipes()
     .then(function(recipes) {
-      // console.log('recipes in controller', recipes);
       for (var i = 0; i < recipes.data.length; i++) {
         recipes.data[i].nutrition = JSON.parse(recipes.data[i].nutrition);
-        // console.log(typeof recipes.data[i].nutrition);
+        recipes.data[i].nutrition.labels = recipes.data[i].nutrition.dietLabels.concat(recipes.data[i].nutrition.healthLabels);
       }
       self.recipes = recipes.data;
     });
@@ -26,16 +25,14 @@ app.controller('CookbookController', ['Cookbook','Request', 'Auth', function(Coo
   //add recipe to database
   this.addRecipe = function() {
     var self = this;
-    // console.log("eNutri:", self.eNutri);
     self.newRecipe.ingredients = self.newRecipe.ingredients.split('\n');
     self.newRecipe.directions = self.newRecipe.directions.split('\n');
     self.newRecipe.nutrition = JSON.stringify(self.eNutri);
     Cookbook.addRecipe(self.newRecipe)
     .then(function(recipes) {
-         // console.log('recipes in controller', recipes);
       for (var i = 0; i < recipes.data.length; i++) {
         recipes.data[i].nutrition = JSON.parse(recipes.data[i].nutrition);
-        // console.log(typeof recipes.data[i].nutrition);
+        recipes.data[i].labels = recipes.data[i].dietLabels.concat(recipes.data[i].healthLabels);
       }
       self.recipes = recipes.data;
     });
@@ -50,6 +47,9 @@ app.controller('CookbookController', ['Cookbook','Request', 'Auth', function(Coo
     self.reqIngr.title = self.newRecipe.name;
     Request.edamamReq(self.reqIngr)
       .then(function(nutriData) {
+        // for (var i = 0; i < nutriData.data.length; i++) {
+        //   nutriData.data[i].labels = nutriData.dietLabels.concat(nutriData.healthLabels);
+        // }
         self.eNutri = nutriData.data;
         self.loading = false;
       });
