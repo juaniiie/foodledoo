@@ -101,7 +101,6 @@ app.factory('Request', ['$http', 'Auth', function($http, Auth) {
     return $http.post('/api/nutrients', ingr, {
       headers: {Authorization: 'Bearer ' + Auth.auth.getToken()}})
     .then(function(data) {
-      console.log('factory response', data);
       return data;
     })
     .catch(function(error) {

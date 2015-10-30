@@ -2,6 +2,7 @@ app.controller('CookbookController', ['Cookbook','Request', 'Auth', function(Coo
   this.newRecipe = {};
   this.reqIngr = {};
   this.eNutri = {};
+  this.loading = true;
 
   //get all recipes for one user
   this.init = function() {
@@ -35,6 +36,7 @@ app.controller('CookbookController', ['Cookbook','Request', 'Auth', function(Coo
     Request.edamamReq(self.reqIngr)
       .then(function(nutriData) {
         self.eNutri = nutriData.data;
+        self.loading = false;
       });
   };
 }]);

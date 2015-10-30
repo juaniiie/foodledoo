@@ -26,8 +26,10 @@
 
   </div>
 
-  <div class="container col-md-4">
+  <div class="container col-md-4" ng-hide="cookbook.loading">
     <nutrition nutrition="cookbook.eNutri"></nutrition>
   </div>
+
+  <div ng-show="cookbook.loading">Loading...</div>
   
 </div>  
