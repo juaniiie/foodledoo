@@ -16,6 +16,11 @@ exports.editRecipe = function(id, newRecipe, callback) {
   Recipe.findByIdAndUpdate(id, newRecipe, {}, callback);
 };
 
+//retrieves a recipe by id
+exports.findRecipe = function(id) {
+  Recipe.findById(id, {}, {}, callback);
+};
+
 //deletes recipe
 exports.deleteRecipe = function(id, callback) {
   Recipe.findOneAndRemove({_id: id}, {}, callback);

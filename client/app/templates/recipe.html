@@ -1,10 +1,12 @@
-<div class="thumbnail">
-  <!-- <img src="http://sweetclipart.com/multisite/sweetclipart/files/sushi_rolls_futomaki_ebi.png" alt="...">  -->
-  <div class="caption">
+<div class="thumbnail container">
+  <div class="caption col-md-6">
     <h3>{{recipeInfo.name}}</h3>
     <h4>Ingredients</h4>
     <div ng-repeat="ingredient in recipeInfo.ingredients track by $index">{{ingredient}}</div>
     <h4>Directions</h4>
     <div ng-repeat="direction in recipeInfo.directions track by $index">{{direction}}</div>
+  </div>
+  <div class="col-md-6">
+    <nutrition nutrition="recipeInfo.nutrition"></nutrition>
   </div>
 </div>

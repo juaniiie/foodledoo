@@ -1,4 +1,5 @@
 app.controller('CookbookController', ['Cookbook','Request', 'Auth', function(Cookbook, Request, Auth) {
+  this.recipes = [];
   this.newRecipe = {};
   this.reqIngr = {};
   this.eNutri = {};
@@ -20,13 +21,17 @@ app.controller('CookbookController', ['Cookbook','Request', 'Auth', function(Coo
   //add recipe to database
   this.addRecipe = function() {
     var self = this;
+    console.log("eNutri:", self.eNutri);
     self.newRecipe.ingredients = self.newRecipe.ingredients.split('\n');
     self.newRecipe.directions = self.newRecipe.directions.split('\n');
+    self.newRecipe.nutrition = JSON.stringify(self.eNutri);
     Cookbook.addRecipe(self.newRecipe)
     .then(function(recipes) {
       self.recipes = recipes.data;
     });
     self.newRecipe = {};
+    self.eNutri = {};
+    self.loading = true;
   };
 
   this.getNutrition = function() {

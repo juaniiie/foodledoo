@@ -95,6 +95,17 @@ app.get('/api/users/:id/recipes', auth, function(req, res) {
   });
 });
 
+//has not been tested
+app.get('/api/recipes/:id', auth, function(req, res) {
+  recipeCtrl.findRecipe(req.params.id, function(err, recipe) {
+    if (err) {
+      res.status(404).json('recipe not found:', err);
+    } else {
+      res.status(200).json(recipe);
+    }
+  });
+});
+
 //has not been tested with auth
 //edit recipe
 app.put('/api/users/:id/recipes/:id', auth, function(req, res) {
@@ -109,7 +120,8 @@ app.put('/api/users/:id/recipes/:id', auth, function(req, res) {
 
 //has not been tested with auth
 //deletes recipe
-app.delete('/api/users/:id/recipes/:id', auth, function(req, res) {
+// app.delete('/api/users/:id/recipes/:id', auth, function(req, res) {
+  app.delete('/api/recipes/:id', function(req, res) {
   recipeCtrl.deleteRecipe(req.params.id, function(err, recipe) {
     if (err) {
       res.status(404).json('recipe not found:', err);
