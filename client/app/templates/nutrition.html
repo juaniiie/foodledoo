@@ -1,17 +1,17 @@
-
+<div class="row">
+  <div class="col-md-6 text-bold"><strong>Nutritional Facts</strong></div>
+  <div class="col-md-6 text-right"><strong>yield: {{nutrition.yield}}</strong></div>
+</div>
 <table class="table col-md-4 mt15">
   <tr>
-    <th>Nutritional Facts</th>
-  </tr>
-  <tr>
-    <th>Content</th>
-    <th>Quantity</th>
-    <th>% Daily Value</th>
+    <th class="text-left">Content</th>
+    <th class="text-center">Quantity</th>
+    <th class="text-right">% Daily Value</th>
   </tr>
   <tr ng-repeat="nutrient in nutrientsData">
-    <td>{{nutrient.label}}</td>
-    <td>{{nutrient.quantity +' '+ nutrient.unit}}</td>
-    <td>{{nutrient.dailyPercent +' %'}}</td>
+    <td class="text-left">{{nutrient.label}}</td>
+    <td class="text-center">{{nutrient.quantity +' '+ nutrient.unit}}</td>
+    <td class="text-right">{{nutrient.dailyPercent +' %'}}</td>
   </tr>
 </table>
 <div class="container col-md-4" ng-repeat="label in nutrition.labels">
