@@ -1,12 +1,12 @@
 
 <table class="table col-md-4 mt15">
   <tr>
-    <th>Nutrition</th>
+    <th>Nutritional Facts</th>
   </tr>
   <tr>
-    <th>Nutrient</th>
+    <th>Content</th>
     <th>Quantity</th>
-    <th>Percent Daily Value</th>
+    <th>% Daily Value</th>
   </tr>
   <tr ng-repeat="nutrient in nutrientsData">
     <td>{{nutrient.label}}</td>
@@ -14,7 +14,6 @@
     <td>{{nutrient.dailyPercent +' %'}}</td>
   </tr>
 </table>
-
 <div class="container col-md-4" ng-repeat="label in nutrition.labels">
   <h2 class="label label-info">{{label}}</h2>
 </div>
