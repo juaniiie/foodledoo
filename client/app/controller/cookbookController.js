@@ -32,7 +32,7 @@ app.controller('CookbookController', ['Cookbook','Request', 'Auth', function(Coo
     .then(function(recipes) {
       for (var i = 0; i < recipes.data.length; i++) {
         recipes.data[i].nutrition = JSON.parse(recipes.data[i].nutrition);
-        recipes.data[i].labels = recipes.data[i].dietLabels.concat(recipes.data[i].healthLabels);
+        recipes.data[i].labels = recipes.data[i].nutrition.dietLabels.concat(recipes.data[i].nutrition.healthLabels);
       }
       self.recipes = recipes.data;
     });

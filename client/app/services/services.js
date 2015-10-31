@@ -61,7 +61,7 @@ app.factory('Auth', ['$http', '$window', function($http, $window) {
   };
 }]);
 
-app.factory('Cookbook', ['$http', 'Auth', 'API', function($http, Auth, API) {
+app.factory('Cookbook', ['$http', 'Auth', function($http, Auth) {
   //add recipe to db
   var addRecipe = function(recipe) {
     var usernameId = Auth.auth.currentUserId();
