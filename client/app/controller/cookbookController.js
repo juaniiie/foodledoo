@@ -47,9 +47,7 @@ app.controller('CookbookController', ['Cookbook','Request', 'Auth', function(Coo
     self.reqIngr.title = self.newRecipe.name;
     Request.edamamReq(self.reqIngr)
       .then(function(nutriData) {
-        // for (var i = 0; i < nutriData.data.length; i++) {
-        //   nutriData.data[i].labels = nutriData.dietLabels.concat(nutriData.healthLabels);
-        // }
+        nutriData.data.labels = nutriData.data.dietLabels.concat(nutriData.data.healthLabels);
         self.eNutri = nutriData.data;
         self.loading = false;
       });

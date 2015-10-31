@@ -17,7 +17,7 @@ exports.editRecipe = function(id, newRecipe, callback) {
 };
 
 //retrieves a recipe by id
-exports.findRecipe = function(id) {
+exports.findRecipe = function(id, callback) {
   Recipe.findById(id, {}, {}, callback);
 };
 
