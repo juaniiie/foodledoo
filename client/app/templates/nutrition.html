@@ -14,6 +14,6 @@
     <td class="text-right">{{nutrient.dailyPercent + ' '}}<span ng-hide="nutrient.dailyPercent === 'N/A'">%</span></td>
   </tr>
 </table>
-<div class="container col-md-4" ng-repeat="label in nutrition.labels">
-  <h2 class="label label-info">{{label}}</h2>
+<div class="col-md-4" ng-repeat="label in nutrition.labels">
+  <h4><span class="label label-info">{{label}}</span></h4>
 </div>

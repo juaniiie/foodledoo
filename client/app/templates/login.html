@@ -2,7 +2,7 @@
   <span>{{ auth.error.message }}</span>
 </div>
 
-<div class="form">
+<div class="form mt10p">
   
   <div class="row mb10 mt15">
     <div class="input-group input-group-lg col-md-6 col-md-offset-3">
@@ -13,7 +13,7 @@
   <div class="row mb10">
     <div class="input-group input-group-lg col-md-6 col-md-offset-3">
       <span class="input-group-addon" id="sizing-addon1">Password</span>
-      <input type="text" class="form-control" ng-model="auth.user.password">
+      <input type="password" class="form-control" ng-model="auth.user.password">
     </div>
   </div>
 
@@ -22,5 +22,5 @@
 </div>
 
 <div class="row">
-  <span class="col-md-3 col-md-offset-5 mt15">Don't have an account? <a ui-sref="register">Resgister here</a></span>
+  <span class="col-md-4 col-md-offset-4 mt15 text-center">Don't have an account? <a ui-sref="register">Register here</a></span>
 </div>

@@ -1,35 +1,51 @@
+<h1 class="lobster ml30">Add Recipe</h1>
 <div class="row">
-  <div class="form col-md-6">
-    <div class="row mb10 mt15">
-      <div class="input-group input-group-lg col-md- col-md-offset-1">
-        <span class="input-group-addon" id="sizing-addon1">Name</span>
-        <input type="text" class="form-control" ng-model="cookbook.newRecipe.name">
+  <form name="recipeForm" class="form col-md-6">
+    <div class="mb10 mt15">
+      <div class="input-group input-group-lg col-md-offset-1">
+        <span class="input-group-addon"
+              id="sizing-addon1">Name</span>
+        <input type="text"
+               class="form-control"
+               ng-model="cookbook.newRecipe.name"
+               required>
       </div>
     </div>
-    <div class="row mb10">
-      <div class="input-group input-group-lg col-md- col-md-offset-1">
+    <div class="mb10">
+      <div class="input-group input-group-lg col-md-offset-1">
         <span class="input-group-addon" id="sizing-addon1">Ingredients</span>
-        <textarea style="height:200px" type="text" class="form-control" ng-model="cookbook.newRecipe.ingredients"></textarea> 
+        <textarea style="height:200px"
+                  type="text"
+                  class="form-control"
+                  ng-model="cookbook.newRecipe.ingredients" required></textarea> 
       </div>
     </div>
-    <div class="row mb10">
-      <div class="input-group input-group-lg col-md- col-md-offset-1">
-        <span class="input-group-addon" id="sizing-addon1">Directions</span>    
-        <textarea style="height:200px" type="text" class="form-control" ng-model="cookbook.newRecipe.directions"></textarea>
+    <div class="mb10">
+      <div class="input-group input-group-lg col-md-offset-1">
+        <span class="input-group-addon"
+              id="sizing-addon1">Directions</span>  
+        <textarea style="height:200px"
+                  type="text"
+                  class="form-control"
+                  ng-model="cookbook.newRecipe.directions" required></textarea>
       </div>
     </div>
-    
-    <div class="row">
-      <button class="btn btn-default btn-lg col-md-2 col-md-offset-3" ng-click="cookbook.addRecipe()">Save</button>
-      <button class="btn btn-default btn-lg col-md-2 ml5" ng-click="cookbook.getNutrition()">Health Info</button>
+    <div class=" col-md-offset-1 text-center">
+      <button class="btn btn-default btn-lg"
+              ng-click="cookbook.addRecipe()"
+              ng-disabled="recipeForm.$invalid">Save</button>
+      <button class="btn btn-default btn-lg"
+              ng-click="cookbook.getNutrition()"
+              ng-disabled="!cookbook.newRecipe.ingredients">Get Nutrition Facts</button>
     </div>
+  </form>
 
-  </div>
-
-  <div class="container col-md-4" ng-hide="cookbook.loading">
+  <div class="col-md-4 col-md-offset-1" ng-hide="cookbook.loading">
     <nutrition nutrition="cookbook.eNutri"></nutrition>
   </div>
 
-  <div ng-show="cookbook.loading">Loading...</div>
+  <div ng-show="cookbook.loading"
+       class="col-md-4 col-md-offset-1 text-center spinner" id="spinner">
+  </div>
   
 </div>  

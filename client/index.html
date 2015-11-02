@@ -8,11 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="assets/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
     <script src="libs/angular/angular.min.js"></script>
     <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="libs/jquery/dist/jquery.js"></script>
     <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/spin.min.js"></script>
 
     <script src="app/app.js"></script>
     <script src="app/controller/cookbookController.js"></script>
@@ -29,14 +31,14 @@
   <body ng-app="foodle">
 
     <div>
-      <nav class="navbar navbar-default" ng-class="{mb0: true}" ng-controller="NavbarController as navCtrl" role="navigation">
+      <nav class="navbar navbar-default navbar-top" ng-class="{mb0: true}" ng-controller="NavbarController as navCtrl" role="navigation">
         <div class="navbar-header">
-          <a class="navbar-brand" ui-sref="home">foodleDoo</a>      
+          <a class="navbar-brand lobster" ui-sref="home">foodleDoo</a>      
         </div>
         <ul class="nav navbar-nav navbar-right mr5">
-          <li ng-show="navCtrl.isLoggedIn()"><a>{{ navCtrl.currentUser() }}'s Cookbook</a></li>
+          <li ng-show="navCtrl.isLoggedIn()"><a ui-sref="cookbook.viewrecipes">{{ navCtrl.currentUser() }}'s Cookbook</a></li>
           <li ng-show="navCtrl.isLoggedIn()"><a ui-sref="home" ng-click="navCtrl.logOut()">LogOut</a></li>
-          <li ng-hide="navCtrl.isLoggedIn()"><a ui-sref="login">LogIn/SignUp</a></li>
+          <li ng-hide="navCtrl.isLoggedIn()"><a ui-sref="login">Login / Sign Up</a></li>
         </ul>
       </nav>
     </div>

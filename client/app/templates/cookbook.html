@@ -1,9 +1,4 @@
-  <nav class="navbar navbar-default" role="navigation">
-   <form class="navbar-form navbar-right mr5" role="search">
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="search" placeholder="Search recipes"/>
-      </div>
-    </form>
+  <nav class="navbar navbar-default navbar-bottom" role="navigation">
 
     <ul class="nav navbar-nav navbar-right mr5">
       <li><a ui-sref=".addrecipe" > Add Recipe </a></li>
@@ -11,6 +6,11 @@
      <ul class="nav navbar-nav navbar-right mr5">
       <li><a ui-sref=".viewrecipes"> My Recipes </a></li>
     </ul>
+   <form class="navbar-form navbar-right mr5" role="search">
+      <div class="form-group" ng-show="cookbook.getState()">
+        <input type="text" class="form-control" ng-model="search" placeholder="Search recipes"/>
+      </div>
+    </form>
 
   </nav>
   <div ui-view></div>

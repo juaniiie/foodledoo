@@ -16,9 +16,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'app/templates/login.html',
     controller: 'AuthController',
     controllerAs: 'auth',
-    onEnter: ['$state', 'Auth', function($state, Auth) {
+    onEnter: ['$state', 'Auth', '$timeout', function($state, Auth, $timeout) {
       if (Auth.auth.isLoggedIn()) {
-        $state.go('cookbook');
+        $timeout(function() {
+          $state.go('cookbook.viewrecipes');
+        });
       }
     }]
   })
@@ -27,9 +29,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'app/templates/register.html',
     controller: 'AuthController',
     controllerAs: 'auth',
-    onEnter: ['$state', 'Auth', function($state, Auth) {
+    onEnter: ['$state', 'Auth', '$timeout', function($state, Auth, $timeout) {
       if (Auth.auth.isLoggedIn()) {
-        $state.go('cookbook');
+        $timeout(function() {
+          $state.go('cookbook.viewrecipes');
+        });
       }
     }]
   })

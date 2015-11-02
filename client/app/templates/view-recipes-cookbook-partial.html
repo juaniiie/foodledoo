@@ -1,3 +1,4 @@
+<h1 class="lobster ml30 mb15">My Recipes</h1>
 <div class="row">
   <div class="col-md-10 col-md-offset-1" ng-repeat="recipe in cookbook.recipes | filter:search | orderBy:'recipe'">
     <recipe recipe-info="recipe"></recipe>
