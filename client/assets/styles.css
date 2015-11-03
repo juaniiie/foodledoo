@@ -119,7 +119,7 @@ body {
 .container.home {
   position: relative;
 }
-hr {
+hr .ml15 .mr15 {
   margin-top: 150px;
   border: none;
   height: 1px;

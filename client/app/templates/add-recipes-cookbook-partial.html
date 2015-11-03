@@ -40,21 +40,28 @@
     </div>
   </form>
 
-  <div class="col-md-4 col-md-offset-1" ng-hide="cookbook.loading">
- <!--  <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">Table</a></li>
-    <li role="presentation"><a href="#">Chart</a></li>
-  </ul> -->
- <!--    <div>
-      <nutrition nutrition="cookbook.eNutri"></nutrition>
-    </div> -->
-    <div>
-      <chart chart="cookbook.eNutri"></chart>
-    </div>
+<div class="col-md-6 mt15">
+  <div class="col-md-10 col-md-offset-1">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a>Table</a></li>
+      <li role="presentation"><a href="#">Chart</a></li>
+    </ul>
+  </div>
+  <div class="col-md-10 col-md-offset-1" ng-hide="cookbook.loading">
+    <!-- <div class="thumbnail container"> -->
+      <div class="mt15 mb15 ml15 mr15">
+        <chart chart="cookbook.eNutri"></chart>
+      </div>
+     <!--  <div class="mt15 mb15 ml15 mr15">
+        <nutrition nutrition="cookbook.eNutri"></nutrition>
+      </div> -->
+      
+    <!-- </div> -->
   </div>
 
   <div ng-show="cookbook.loading"
-       class="col-md-4 col-md-offset-1 text-center spinner" id="spinner">
+       class="col-md-10 col-md-offset-1 text-center spinner" id="spinner">
   </div>
+</div>
   
 </div>  

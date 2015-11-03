@@ -4,7 +4,7 @@ app.directive('chart', function() {
     scope: {
       chart: '='
     },
-    link: function(scope) {
+    link: function(scope, element) {
 
       scope.$watchCollection('chart', function() {
         scope.dictionary = {
@@ -18,7 +18,9 @@ app.directive('chart', function() {
           SUGAR: 'Sugar'
         };
         scope.makeTree = function(nutrientObj) {
+          
           d3.select('svg').remove();
+          
           var counter = 0;
           var root = {};
           root.name = 'Percent';
@@ -32,19 +34,20 @@ app.directive('chart', function() {
               root.children.push(item);
             }
           }
-          var width = $('svg').parent().width();
-          console.log('svg parent', $('svg').parent());
-          var height = $('svg').parent().height();
-          console.log($('svg').parent().height())
+          // var width = $('svg').width();
+          console.log('svg', $('svg').parent());
+          // var height = $('svg').parent().height();
+          console.log('bubbleChart height', $('.bubbleChart').height());
+          console.log('bubbleChart width', $('.bubbleChart').width());
 
-          var bubble = d3.layout.pack().sort(null).size([400, 400]).padding(1.5);
+          var bubble = d3.layout.pack().sort(null).size([450, 400]).padding(1.5);
 
           bubble.nodes(root);
 
           var svg = d3.select('.bubbleChart')
                       .append('svg')
-                      .attr('width', 450)
-                      .attr('height', 400)
+                      .attr('width', '100%')
+                      .attr('height', '100%')
                       .attr('class', 'bubble');
 
           var node = svg.selectAll('.node')
