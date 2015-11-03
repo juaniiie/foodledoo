@@ -20,7 +20,7 @@ app.directive('chart', function() {
         scope.makeTree = function(nutrientObj) {
           
           d3.select('svg').remove();
-          
+          var diameter = 500;
           var counter = 0;
           var root = {};
           root.name = 'Percent';
@@ -40,14 +40,16 @@ app.directive('chart', function() {
           console.log('bubbleChart height', $('.bubbleChart').height());
           console.log('bubbleChart width', $('.bubbleChart').width());
 
-          var bubble = d3.layout.pack().sort(null).size([450, 400]).padding(1.5);
+          var bubble = d3.layout.pack().sort(null).size([diameter, diameter]).padding(1.5);
 
           bubble.nodes(root);
 
           var svg = d3.select('.bubbleChart')
                       .append('svg')
-                      .attr('width', '100%')
-                      .attr('height', '100%')
+                      .attr('viewBox', '0 0 500 500')
+                      .attr('perserveAspectRatio', 'xMinYMid')
+                      .attr('width', diameter)
+                      .attr('height', diameter)
                       .attr('class', 'bubble');
 
           var node = svg.selectAll('.node')
@@ -74,6 +76,16 @@ app.directive('chart', function() {
               .attr('dy', '.3em')
               .style('text-anchor', 'middle')
               .text(function(d) { return d.name; });
+
+          var chart = $('.bubble');
+          var aspect = chart.width() / chart.height();
+          var container = chart.parent();
+
+          $(window).on('resize', function() {
+            var targetWidth = container.width();
+            chart.attr('width', targetWidth);
+            chart.attr('height', Math.round(targetWidth / aspect));
+          }).trigger('resize');
 
         };
 
