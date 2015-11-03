@@ -159,14 +159,6 @@ nutrition h4 {
   width: 200px;
   height: 200px;
 }
-.circle-small {
-  border: 1px;
-  border-style: solid;
-  border-color: #FA8B60;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-}
 .icon-fontello {
 font-size: 100px;
 color: white;

@@ -41,7 +41,16 @@
   </form>
 
   <div class="col-md-4 col-md-offset-1" ng-hide="cookbook.loading">
-    <nutrition nutrition="cookbook.eNutri"></nutrition>
+ <!--  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">Table</a></li>
+    <li role="presentation"><a href="#">Chart</a></li>
+  </ul> -->
+ <!--    <div>
+      <nutrition nutrition="cookbook.eNutri"></nutrition>
+    </div> -->
+    <div>
+      <chart chart="cookbook.eNutri"></chart>
+    </div>
   </div>
 
   <div ng-show="cookbook.loading"

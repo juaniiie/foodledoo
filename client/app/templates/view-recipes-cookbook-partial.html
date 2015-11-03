@@ -2,5 +2,6 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1" ng-repeat="recipe in cookbook.recipes | filter:search | orderBy:'recipe'">
     <recipe recipe-info="recipe"></recipe>
+    <!-- <chart chart="recipe"></chart> -->
   </div>
 </div>

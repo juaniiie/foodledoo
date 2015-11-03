@@ -34,6 +34,7 @@ function(Cookbook, Request, $state, Auth) {
         recipes.data[i].nutrition = JSON.parse(recipes.data[i].nutrition);
       }
       self.recipes = recipes.data;
+      $state.go('cookbook.viewrecipes');
     });
     self.newRecipe = {};
     self.eNutri = {};
