@@ -6,7 +6,12 @@ app.directive('chart', function() {
     },
     link: function(scope, element) {
 
+      console.log('element:', element);
+
       scope.$watchCollection('chart', function() {
+        
+        console.log('scope.chart', scope.chart);
+
         scope.dictionary = {
           CHOLE: 'Cholesterol',
           ENERC_KCAL: 'Calories',
@@ -19,7 +24,8 @@ app.directive('chart', function() {
         };
         scope.makeTree = function(nutrientObj) {
 
-          d3.select('svg').remove();
+          d3.select(element[0].children[1]).select('svg').remove();
+
           var diameter = 500;
           var counter = 0;
           var root = {};
@@ -39,7 +45,7 @@ app.directive('chart', function() {
 
           bubble.nodes(root);
 
-          var svg = d3.select('.bubbleChart')
+          var svg = d3.select(element[0].children[1])
                       .append('svg')
                       .attr('viewBox', '0 0 500 500')
                       .attr('perserveAspectRatio', 'xMinYMid')
@@ -72,6 +78,7 @@ app.directive('chart', function() {
               .style('text-anchor', 'middle')
               .text(function(d) { return d.name; });
         };
+
         var chart = $('.bubble');
         var aspect = chart.width() / chart.height();
         var container = chart.parent();
@@ -84,8 +91,8 @@ app.directive('chart', function() {
 
         if (Object.keys(scope.chart).length !== 0) {
           scope.makeTree(scope.chart);
+          console.log('object keys', Object.keys(scope.chart).length);
         }
-
       });
     },
     templateUrl: 'app/templates/chart.html'

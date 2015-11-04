@@ -65,17 +65,15 @@ function(Cookbook, Request, $state, Auth) {
   this.chartState = false;
 
   this.tableTab = function() {
-    self = this;
-    self.display = !self.display;
-    self.tableState = true;
-    self.chartState = false;
+    this.display = !this.display;
+    this.tableState = true;
+    this.chartState = false;
   };
 
   this.chartTab = function() {
-    self = this;
-    self.display = !self.display;
-    self.chartState = true;
-    self.tableState = false;
+    this.display = !this.display;
+    this.chartState = true;
+    this.tableState = false;
   };
 
   var createSpinner = function() {

@@ -1,12 +1,28 @@
 <div class="thumbnail container">
   <div class="caption col-md-6">
-    <h3 class="lobster">{{recipeInfo.name}}</h3>
-    <h4>Ingredients</h4>
-    <div ng-repeat="ingredient in recipeInfo.ingredients track by $index">{{ingredient}}</div>
-    <h4>Directions</h4>
-    <div ng-repeat="direction in recipeInfo.directions track by $index">{{direction}}</div>
-  </div>
-  <div class="col-md-6">
-    <nutrition nutrition="recipeInfo.nutrition"></nutrition>
+    <div class="col-md-10 col-md-offset-1">
+      <h3 class="lobster">{{recipeInfo.name}}</h3>
+      <h4>Ingredients</h4>
+      <div ng-repeat="ingredient in recipeInfo.ingredients track by $index">{{ingredient}}</div>
+      <h4>Directions</h4>
+      <div ng-repeat="direction in recipeInfo.directions track by $index">{{direction}}</div>
+    </div>
+    </div>
+  <div class="col-md-6 mt10">
+    <!-- <nutrition nutrition="recipeInfo.nutrition"></nutrition> -->
+    <div class="col-md-11">
+      <ul class="nav nav-tabs">
+        <li role="presentation" ng-class="{active: tableState}" ng-click="tableTab()"><a>Table</a></li>
+        <li role="presentation" ng-class="{active: chartState}" ng-click="chartTab()"><a>Chart</a></li>
+      </ul>
+    </div>
+    <div class="col-md-11">
+      <div class="mt10 mb10 ml10 mr10" ng-show="display">
+        <nutrition nutrition="recipeInfo.nutrition"></nutrition>
+      </div>
+      <div class="mt10 ml10 mr10" ng-if="!display">
+        <chart chart="recipeInfo.nutrition"></chart>
+      </div>
+    </div>
   </div>
 </div>
