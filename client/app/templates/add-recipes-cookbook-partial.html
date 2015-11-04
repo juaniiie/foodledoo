@@ -43,21 +43,20 @@
 <div class="col-md-6 mt15">
   <div class="col-md-10 col-md-offset-1">
     <ul class="nav nav-tabs">
-      <li role="presentation" ><a>Table</a></li>
-      <li role="presentation" class="active"><a>Chart</a></li>
+      <li role="presentation" ng-class="{active: cookbook.tableState}" ng-click="cookbook.tableTab()"><a>Table</a></li>
+      <li role="presentation" ng-class="{active: cookbook.chartState}" ng-click="cookbook.chartTab()"><a>Chart</a></li>
     </ul>
   </div>
   <div class="col-md-10 col-md-offset-1" ng-hide="cookbook.loading">
-     <!--  <div class="mt15 mb15 ml15 mr15">
+      <div class="mt15 mb15 ml15 mr15" ng-show="cookbook.display">
         <nutrition nutrition="cookbook.eNutri"></nutrition>
-      </div> -->
-      <div class="mt15 ml15 mr15">
+      </div>
+      <div class="mt15 ml15 mr15" ng-hide="cookbook.display">
         <chart chart="cookbook.eNutri"></chart>
       </div>
   </div>
-
   <div ng-show="cookbook.loading"
-       class="col-md-10 col-md-offset-1 text-center spinner" id="spinner">
+    class="col-md-10 col-md-offset-1 text-center spinner" id="spinner">
   </div>
 </div>
   

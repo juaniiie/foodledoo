@@ -4,7 +4,6 @@ function(Cookbook, Request, $state, Auth) {
   this.newRecipe = {};
   this.reqIngr = {};
   this.eNutri = {};
-  this.display = true;
 
   //get all recipes for one user
   this.init = function() {
@@ -60,19 +59,23 @@ function(Cookbook, Request, $state, Auth) {
     return $state.includes('cookbook.viewrecipes');
   };
 
+//tabs state variables and functions
+  this.display = true;
+  this.tableState = true;
+  this.chartState = false;
 
   this.tableTab = function() {
     self = this;
-    console.log('display table before', self.display);
-    console.log('display table after', !self.display);
-    return !self.display;
+    self.display = !self.display;
+    self.tableState = true;
+    self.chartState = false;
   };
 
   this.chartTab = function() {
     self = this;
-    console.log('display chart before', self.display);
-    console.log('display chart after', !self.display);
-    return !self.display;
+    self.display = !self.display;
+    self.chartState = true;
+    self.tableState = false;
   };
 
   var createSpinner = function() {
