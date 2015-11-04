@@ -18,7 +18,7 @@ app.directive('chart', function() {
           SUGAR: 'Sugar'
         };
         scope.makeTree = function(nutrientObj) {
-          
+
           d3.select('svg').remove();
           var diameter = 500;
           var counter = 0;
@@ -34,11 +34,6 @@ app.directive('chart', function() {
               root.children.push(item);
             }
           }
-          // var width = $('svg').width();
-          console.log('svg', $('svg').parent());
-          // var height = $('svg').parent().height();
-          console.log('bubbleChart height', $('.bubbleChart').height());
-          console.log('bubbleChart width', $('.bubbleChart').width());
 
           var bubble = d3.layout.pack().sort(null).size([diameter, diameter]).padding(1.5);
 
@@ -76,24 +71,17 @@ app.directive('chart', function() {
               .attr('dy', '.3em')
               .style('text-anchor', 'middle')
               .text(function(d) { return d.name; });
-
-          var chart = $('.bubble');
-          var aspect = chart.width() / chart.height();
-          var container = chart.parent();
-
-          $(window).on('resize', function() {
-            var targetWidth = container.width();
-            chart.attr('width', targetWidth);
-            chart.attr('height', Math.round(targetWidth / aspect));
-          }).trigger('resize');
-
         };
+        var chart = $('.bubble');
+        var aspect = chart.width() / chart.height();
+        var container = chart.parent();
 
-        // if (scope.chart.labels) {
-        //   for (var i = 0; i < scope.chart.labels.length; i++) {
-        //     scope.chart.labels[i] = (scope.chart.labels[i].toLowerCase()).replace(/_/g, ' ');
-        //   }
-        // }
+        $(window).on('resize', function() {
+          var targetWidth = container.width();
+          chart.attr('width', targetWidth);
+          chart.attr('height', Math.round(targetWidth / aspect));
+        }).trigger('resize');
+
         if (Object.keys(scope.chart).length !== 0) {
           scope.makeTree(scope.chart);
         }
