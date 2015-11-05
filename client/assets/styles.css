@@ -103,6 +103,7 @@ body {
   padding: 10px 25px;
   font-size: 18px;
   width: 200px;
+  border-radius: 20px;
 }
 .login:hover {
   -moz-transition: all .2s ease-in;
