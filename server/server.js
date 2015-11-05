@@ -150,7 +150,8 @@ app.post('/api/nutrients', auth, function(req, res) {
   });
 });
 //===================================================================================
+var port = process.env.PORT || 3030;
 
-app.listen('8080', function() {
-  console.log('listening on 8080');
+app.listen('3030', function() {
+  console.log('listening on 3030');
 });
