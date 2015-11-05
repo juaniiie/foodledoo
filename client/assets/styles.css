@@ -118,6 +118,7 @@ body {
 }
 .container.home {
   position: relative;
+  height: 500px;
 }
 hr .ml15 .mr15 {
   margin-top: 150px;
