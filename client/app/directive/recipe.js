@@ -5,7 +5,6 @@ app.directive('recipe', function() {
       recipeInfo: '='
     },
     link: function(scope) {
-      // console.log(scope.recipeInfo);
       //tabs state variables and functions
       scope.display = true;
       scope.tableState = true;

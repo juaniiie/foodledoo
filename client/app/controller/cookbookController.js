@@ -26,7 +26,6 @@ function(Cookbook, Request, $state, Auth) {
     var self = this;
     self.newRecipe.ingredients = self.newRecipe.ingredients.split('\n');
     self.newRecipe.directions = self.newRecipe.directions.split('\n');
-    console.log('nutrition object to be saved', self.eNutri);
     self.newRecipe.nutrition = JSON.stringify(self.eNutri);
     Cookbook.addRecipe(self.newRecipe)
     .then(function(recipes) {

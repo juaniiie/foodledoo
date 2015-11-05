@@ -1,6 +1,5 @@
 var express = require('express');
 var jwt = require('express-jwt');
-// var set = require('../config/config');
 var auth = jwt({secret: process.env.SECRET, userProperty: 'payload'});
 var bodyParser = require('body-parser');
 var userCtrl = require('../db/controllers/userController');

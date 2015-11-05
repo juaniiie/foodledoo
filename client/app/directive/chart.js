@@ -6,11 +6,8 @@ app.directive('chart', function() {
     },
     link: function(scope, element) {
 
-      console.log('element:', element);
 
       scope.$watchCollection('chart', function() {
-        
-        console.log('scope.chart', scope.chart);
 
         scope.dictionary = {
           CHOLE: 'Cholesterol',
@@ -91,7 +88,6 @@ app.directive('chart', function() {
 
         if (Object.keys(scope.chart).length !== 0) {
           scope.makeTree(scope.chart);
-          console.log('object keys', Object.keys(scope.chart).length);
         }
       });
     },
