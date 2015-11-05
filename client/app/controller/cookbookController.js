@@ -17,7 +17,7 @@ function(Cookbook, Request, $state, Auth) {
     });
   };
 
-  if (Auth.auth.isLoggedIn()) {
+  if (Auth.auth.isLoggedIn() && this.recipes.length > 0) {
     this.init();
   }
 
