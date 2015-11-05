@@ -1,7 +1,7 @@
 var express = require('express');
 var jwt = require('express-jwt');
-var set = require('../config/config');
-var auth = jwt({secret: set.SECRET, userProperty: 'payload'});
+// var set = require('../config/config');
+var auth = jwt({secret: process.env.SECRET, userProperty: 'payload'});
 var bodyParser = require('body-parser');
 var userCtrl = require('../db/controllers/userController');
 var recipeCtrl = require('../db/controllers/recipeController');
@@ -134,7 +134,7 @@ app.delete('/api/recipes/:id', function(req, res) {
 app.post('/api/nutrients', auth, function(req, res) {
   var recipeData = req.body;
   request({
-    url: 'https://api.edamam.com/api/nutrition-details?app_id=' + set.API_APP_ID + '&app_key=' + set.API_KEY,
+    url: 'https://api.edamam.com/api/nutrition-details?app_id=' + process.env.API_APP_ID + '&app_key=' + process.env.API_KEY,
     method: 'POST',
     headers: {
       "Content-Type": "application/json"

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var db = require('../db.js');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
-var set = require('../../config/config.js');
+// var set = require('../../config/config.js');
 
 var Schema = mongoose.Schema;
 
@@ -33,7 +33,7 @@ UserSchema.methods.generateJWT = function() {
     _id: this._id,
     username: this.username,
     exp: parseInt(exp.getTime() / 1000),
-  }, set.SECRET);
+  }, process.env.SECRET);
 };
 
 var User = mongoose.model('User', UserSchema);
