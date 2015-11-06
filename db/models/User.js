@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var db = require('../db.js');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
-var process = require('../../config/config.js'); //take this out before deploy
+var process = require('../../config/config.js'); //comment this out before deploy
 
 var Schema = mongoose.Schema;
 
@@ -19,7 +19,6 @@ UserSchema.methods.setPassword = function(password) {
 
 UserSchema.methods.validPassword = function(password) {
   //pbkdf2() is a key derivation function
-  console.log(password, this.salt);
   var hash = crypto.pbkdf2Sync(password, this.salt, 100, 64).toString('hex');
   return this.hash === hash;
 };
