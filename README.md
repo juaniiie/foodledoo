@@ -1,7 +1,6 @@
 # foodleDoo
 
 ![foodleDoo home page](/readme_images/front_page.png)
-Format: ![Alt Text](url)
 
 > foodleDoo is a web cookbook where you can archive all of your recipes and received nutritional data 
 
