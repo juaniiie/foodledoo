@@ -1,12 +1,13 @@
-# Project Name
+# foodleDoo
 
-> Pithy project description
+![foodleDoo home page](/readme_images/front_page.png)
+Format: ![Alt Text](url)
+
+> foodleDoo is a web cookbook where you can archive all of your recipes and received nutritional data 
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner and Developer__: Juana Becerra
 
 ## Table of Contents
 
@@ -24,13 +25,27 @@
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- angular 1.4.7
+- jquery 2.1.4
+- angular-ui-router 0.2.15
+- bootstrap 3.3.5
+- node 0.12.7
+- express 4.13.3 
+- express-jwt 3.1.0
+- body-parser 1.14.1
+- bower 1.6.5
+- jsonwebtoken 5.4.0
+- mongodb 2.0.46
+- mongoose 4.1.12
+- passport 0.3.0
+- passport-local 1.0.0
 
 ## Development
+
+- supertest 1.1.0
+- request 2.65.0
+- should 7.1.1
+- chai 3.4.0
 
 ### Installing Dependencies
 

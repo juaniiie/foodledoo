@@ -47,6 +47,7 @@ describe('Server API Routes', function() {
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
+        console.log('res===================', res);
         token = res.body.token;
         done();
       });
@@ -75,5 +76,16 @@ describe('Server API Routes', function() {
       .expect(401)
       .end(done);
     });
+
+    // it('should create a recipe', function(done) {
+    //   var
+    //   request(app)
+    //   .post('/api/users/'+  +'/recipes')
+    //   .set('authorization', 'Bearer' + token)
+    // })
+/* NEED TO DECODE THE TOKEN
+  use: var jwt = require('jsonwebtoken');
+*/
+
   });
 });

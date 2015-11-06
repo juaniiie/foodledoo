@@ -75,6 +75,7 @@ app.post('/login', function(req, res, next) {
 //creates new recipe
 app.post('/api/users/:id/recipes', auth, function(req, res) {
   recipeCtrl.addRecipe(req.body, req.payload._id, function(err, recipe) {
+    console.log();
     if (err) {
       res.status(406).json('recipe not in right format:', err);
     } else {
