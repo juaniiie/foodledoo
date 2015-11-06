@@ -1,5 +1,6 @@
 var express = require('express');
 var jwt = require('express-jwt');
+var process = require('../config/config.js'); //take this out before deploy
 var auth = jwt({secret: process.env.SECRET, userProperty: 'payload'});
 var bodyParser = require('body-parser');
 var userCtrl = require('../db/controllers/userController');
@@ -154,3 +155,5 @@ var port = process.env.PORT || 3030;
 app.listen(port, function() {
   console.log('listening on 3030');
 });
+
+module.exports = app;
