@@ -1,6 +1,6 @@
 # foodleDoo
 
-![foodleDoo home page](/readme_images/front_page.png)
+![foodleDoo home page](/readme_images/front_page.png)(foodledoo.herokuapp.com)
 
 > foodleDoo is a cookbook web app where you can store your recipes. The app enables meal nutritional customization by providing meal specific nutritional data. 
 
@@ -14,7 +14,6 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
