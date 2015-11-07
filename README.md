@@ -53,14 +53,12 @@ module.exports = {
 - mongoose 4.1.12
 - passport 0.3.0
 - passport-local 1.0.0
-
-## Development
-
 - supertest 1.1.0
 - request 2.65.0
 - should 7.1.1
 - chai 3.4.0
 
+## Development
 ### Installing Dependencies
 
 Within the root directory:
