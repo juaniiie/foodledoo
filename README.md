@@ -2,7 +2,7 @@
 
 ![foodleDoo home page](/readme_images/front_page.png)
 
-> foodleDoo is a web cookbook where you can archive all of your recipes and received nutritional data 
+> foodleDoo is a cookbook web app where you can store your recipes. The app enables meal nutritional customization by providing meal specific nutritional data. 
 
 ## Team
 
@@ -20,7 +20,23 @@
 
 ## Usage
 
-> Some usage instructions
+1. Get a free trial API key and APP ID from for the 'Nutrition Analysis API' on the [Edamam API site](https://developer.edamam.com/)
+
+1. Add a file named 'config.js' to the config folder in your root director with the following code:
+
+```sh
+module.exports = {
+  env: {
+    SECRET: ,
+    API_KEY: ,
+    API_APP_ID: 
+  }
+};
+```
+1. Insert your API key, APP ID, and SECRET as strings. The SECRET variable is used to generate a user authentication token, so it can be any combination of letters. This file is included in the .gitignore, so it will not be commited to your github.  
+
+1. Follow instructions on installing dependencies, shown bellow. 
+
 
 ## Requirements
 
@@ -50,15 +66,21 @@
 
 From within the root directory:
 
+Make sure you have npm installed, then ... 
+
 ```sh
-sudo npm install -g bower
 npm install
 bower install
+```
+for test development:
+
+```sh
+npm install -g mocha
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/juaniiie/foodledoo/issues)
 
 
 ## Contributing
