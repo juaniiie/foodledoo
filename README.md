@@ -22,7 +22,7 @@
 
 1. Get a free trial API key and APP ID from for the 'Nutrition Analysis API' on the [Edamam API site](https://developer.edamam.com/)
 
-1. Add a file named 'config.js' to the config folder in your root director with the following code:
+1. Add a file named 'config.js' to the config folder in your root directory with the following code:
 
 ```sh
 module.exports = {
@@ -33,9 +33,9 @@ module.exports = {
   }
 };
 ```
-1. Insert your API key, APP ID, and SECRET as strings. The SECRET variable is used to generate a user authentication token, so it can be any combination of letters. This file is included in the .gitignore, so it will not be commited to your github.  
+1. Insert your API key, APP ID, and SECRET as strings. The SECRET variable is used to generate a user authentication token, so it can be any combination of letters. This file is included in the .gitignore as such, it will not be commited to your github.  
 
-1. Follow instructions on installing dependencies, shown bellow. 
+1. Follow installing dependencies instructions. 
 
 
 ## Requirements
@@ -64,7 +64,7 @@ module.exports = {
 
 ### Installing Dependencies
 
-From within the root directory:
+Within the root directory:
 
 Make sure you have npm installed, then ... 
 
